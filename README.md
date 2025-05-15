@@ -13,7 +13,7 @@ This repository is built for **all**, **beginners** who are curious about low-le
 - Simple and clear explanations of core OS concepts
 - Code examples in C, Assembly and maybe Rust
 - Resources for further exploration
-- Beginner-friendly walkthroughs — but not "dumbed down"
+- Beginner-friendly walkthroughs, but not "dumbed down"
 - Diagrams and visual aids (because words alone sometimes suck)
 - Practice projects to avoid tutorial hell
 
@@ -37,4 +37,4 @@ Feel free to open an issue or a pull request! Check [CONTRIBUTING.md](CONTRIBUTI
 
 ## License
 
-This project is licensed under the MIT License — because knowledge should be free.
+This project is licensed under the MIT License because knowledge should be free.
