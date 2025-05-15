@@ -40,3 +40,7 @@ If you’re here, you’ve already got curiosity and stubbornness. That’s all 
 Welcome to the deep end.
 
 Now go write your own OS… and grow a beard in the process.
+
+
+## Next step
+Check out [this file](./set-up-dev-env.md) to set up your development environment.
