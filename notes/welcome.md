@@ -32,17 +32,6 @@ Then there's the fact that it forces you to understand how a computer *actually*
 
 You stop thinking of a CPU as "just a black box that runs code" and start seeing the real layers; registers, stack frames, interrupt tables, page tables, schedulers, filesystems, all the invisible plumbing that makes modern systems tick.
 
-If you've ever thought high-level programming felt like magic, this repo is your spellbook for how the magic works.
-
-## How to Use This Repo
-
-- **Start in `notes/`**, that’s where I document what I’ve learned.
-- **Check `projects/`** for hands-on experiments you can try.
-- **Peek at `tools/`** to get your environment set up right.
-- **Dig through `resources/`** for PDFs, diagrams, and external gems.
-
-Everything is written to be clear, practical, and beginner-accessible, because I’m learning this as I go, just like you.
-
 ## Final Words
 
 OS dev isn’t easy, and that’s the point.  
