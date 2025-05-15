@@ -1,6 +1,6 @@
 # Crafting an OS: Notes and Insights
 
-Welcome to **Crafting an OS** — a living collection of notes, explanations, and examples from my journey into operating system development.
+Welcome to **Crafting an OS**, a living collection of notes, explanations, and examples from my journey into operating system development.
 
 This repository is built for **all**, **beginners** who are curious about low-level magic, and **experienced developers** looking for clear and practical insights.
 
