@@ -15,7 +15,7 @@ Everything is written to be clear, practical, and beginner-accessible.
 - Code examples in C, Assembly and maybe Rust
 - Resources for further exploration
 - Beginner-friendly walkthroughs, but not "dumbed down"
-- Diagrams and visual aids (because words alone sometimes suck)
+- Diagrams and visual aids
 - Practice projects to avoid tutorial hell
 
 ---
@@ -29,8 +29,8 @@ Everything is written to be clear, practical, and beginner-accessible.
 - [**`notes/`**](./notes): The main event. In-depth notes on everything I’ve learned, clearly organized and growing steadily.
 - [**`projects/`**](./projects): Hands-on projects I’ve worked on to apply what I’ve learned. Fully documented and recommended for practice.
 - [**`resources/`**](./resources): PDFs, images, and other external stuff I found useful (or too good to gatekeep).
-- [**`tools/`**](./tools): Scripts and helpers to automate the boring parts and save you some terminal rage.
-- [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel. The notes in the `notes/` directory will be arranged based on that roadmap.
+- [**`tools/`**](./tools): Scripts and helpers to automate the boring parts and save time.
+- [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel. The notes in the `notes/` directory will be arranged based on this roadmap.
 
 ---
 
