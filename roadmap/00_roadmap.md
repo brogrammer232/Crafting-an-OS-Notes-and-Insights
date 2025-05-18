@@ -9,7 +9,7 @@ No prior experience with systems programming is required, just curiosity, patien
 + [Basic Computer Architecture](#basic-computer-architecture)
 + [C](#c)
 
-# Understanding basic computer architecture
+# Basic computer architecture
 More info in [this file](./01_computer_architecture.md).
 
 What will be covered here:
