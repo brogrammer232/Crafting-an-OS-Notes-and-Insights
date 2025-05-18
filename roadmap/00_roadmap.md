@@ -8,7 +8,6 @@ No prior experience with systems programming is required, just curiosity, patien
 **Contents:**
 + [Basic Computer Architecture](#basic-computer-architecture)
 + [C](#c)
-+ [Assembly](#assembly)
 
 ### Basic computer architecture
 More info in [this file](./01_computer_architecture.md).
