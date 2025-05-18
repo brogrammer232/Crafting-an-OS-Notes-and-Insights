@@ -8,8 +8,9 @@ No prior experience with systems programming is required, just curiosity, patien
 **Contents:**
 + [Basic Computer Architecture](#basic-computer-architecture)
 + [C](#c)
++ [Assembly](#assembly)
 
-# Basic computer architecture
+### Basic computer architecture
 More info in [this file](./01_computer_architecture.md).
 
 What will be covered here:
@@ -21,7 +22,7 @@ What will be covered here:
 + Processor Modes
 + Buses
 
-# C
+### C
 More info in [this file](./02_c.md)
 
 What will be covered here:
@@ -31,3 +32,10 @@ What will be covered here:
 + Practical Exercises
 + C Without Standard Library
 + Makefile Basics
+
+### Upcoming roadmaps
++ Assembly
++ Writing to the screen using BIOS interrupts
++ Switching to protected mode
++ VGA text buffer
++ VGA graphics
