@@ -30,7 +30,18 @@ First of all: bragging rights.
 
 Then there's the fact that it forces you to understand how a computer *actually* works.
 
+Building an OS teaches you:
+- How computers actually work under the hood
+- How CPUs, memory, and devices interact
+- How software manages hardware
+- Why abstractions like "files" and "threads" are miracles of engineering
+
 You stop thinking of a CPU as "just a black box that runs code" and start seeing the real layers; registers, stack frames, interrupt tables, page tables, schedulers, filesystems, all the invisible plumbing that makes modern systems tick.
+
+## What you'll need
++ Curiosity about how computers work
++ Willingness to debug weird, confusing errors
++ An unstoppable mindset
 
 ## Final Words
 
