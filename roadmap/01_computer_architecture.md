@@ -1,4 +1,6 @@
 # Understanding basic computer architecture
+> **Random Quote:** The CPU is the heart of the machine, learn its rhythm, and you can make it dance.
+
 The OS developer needs to understand the fundamental components and behavior of modern computer systems. This section provides the essential architecture knowledge needed to build a simple kernel.
 
 **Contents:**
@@ -69,11 +71,3 @@ Buses are communication pathways used by the CPU to interact with memory and per
 + Types of buses: address bus, data but, control but.
 
 > *Keep this brief too.*
-
-# Summary
-By the end of this, the developer should be able to:
-+ Explain the basic operation of a CPU and its role in a computer system
-+ Identify general-purpose and special-purpose registers
-+ Understand how memory is accessed in real and protected mode
-+ Describe how I/O operations and interrupts function at a basic level
-+ Differentiate between real mode and protected mode
