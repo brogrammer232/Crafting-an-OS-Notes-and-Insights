@@ -30,15 +30,15 @@ Everything is written to be clear, practical, and beginner-accessible.
 - [**`projects/`**](./projects): Hands-on projects I’ve worked on to apply what I’ve learned. Fully documented and recommended for practice.
 - [**`resources/`**](./resources): PDFs, images, and other external stuff I found useful (or too good to gatekeep).
 - [**`tools/`**](./tools): Scripts and helpers to automate the boring parts and save time.
-- [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel. The notes in the `notes/` directory will be arranged based on this roadmap.
+- [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel.
 
 ---
 
 ## Where to Start
 
+- [Roadmap](roadmap/roadmap.md)
 - [Welcome](notes/welcome.md)
-- [Setting up Your Dev Environment](notes/set-up-dev-env.md)
-
+- 
 Or check the full [Table of Contents](SUMMARY.md)!
 
 ---
