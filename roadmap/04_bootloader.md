@@ -1,6 +1,6 @@
 # Bootloader
 
-**Random Quote:** Every operating system begins with 512 bytes of faith.
+> **Random Quote:** Every operating system begins with 512 bytes of faith.
 
 A bootloader is a program stored in the boot sector (usually the first 512 bytes of a bootable storage device) that the BIOS loads into memory and executes.
 
