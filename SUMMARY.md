@@ -7,6 +7,8 @@
 These files contain detailed roadmaps on specific topics:
 + [Computer Architecture](./roadmap/01_computer_architecture.md)
 + [Assembly](./roadmap/02_assembly.md)
++ [BIOS Interrupts](./roadmap/03_bios_interrupts.md)
++ [Bootloader](./roadmap/04_bootloader.md)
 
 ## Introduction to OS development
 + [Welcome](./notes/welcome.md)
