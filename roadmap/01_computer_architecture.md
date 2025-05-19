@@ -1,28 +1,14 @@
 # Understanding basic computer architecture
 > **Random Quote:** The CPU is the heart of the machine, learn its rhythm, and you can make it dance.
 
-The OS developer needs to understand the fundamental components and behavior of modern computer systems. This section provides the essential architecture knowledge needed to build a simple kernel.
+This roadmap outlines the essential concepts of computer architecture that must be understood before beginning OS development. A solid grasp of these fundamentals is necessary before moving on to writing low-level code.
 
-**Contents:**
-+ [Role of the CPU](#role-of-the-cpu)
-+ [Registers](#registers)
-+ [Binary and Hexadecimal](#binary-and-hexadecimal)
-+ [Volatile Memory](#volatile-memory)
-+ [I/O and Interrupts](#io-and-interrupts)
-+ [Processor Modes](#processor-modes)
-+ [Buses](#buses)
-+ [Summary](#summary)
-
-## Role of the CPU
-The Central Processing Unit (CPU) is the primary component responsible for executing instructions and coordinating the operations of a computer system.
-
-**Key concept:**
+## CPU
 + The Fetch-Decode-Execute cycle.
++ The boot sequence.
++ Processor modes.
 
 ## Registers
-Registers are small, fast storage locations within the CPU used to hold data, addresses, or control information during program execution.
-
-**Key registers:**
 + General purpose registers: `AX`, `BX`, `CX`, `DX`.
 + Segment registers: `CS`, `DS`, `SS`, `ES`, `FS`, `GS`.
 + Pointer and index registers: `SP`, `BP`, `SI`, `DI`.
@@ -30,9 +16,6 @@ Registers are small, fast storage locations within the CPU used to hold data, ad
 + Flags register: `FLAGS/EFLAGS`.
 
 ## Binary and Hexadecimal
-The CPU speaks binary. Hexadecimal is an easier way of writing binary. OS development requires you to read and write fluent binary and hexadecimal.
-
-**Key topics:**
 + Binary
 + Hexadecimal
 + Decimal
@@ -40,34 +23,11 @@ The CPU speaks binary. Hexadecimal is an easier way of writing binary. OS develo
 + Bit masking
 
 ## Volatile Memory
-Memory in computer systems is structured hierarchically and accessed by the CPU for code and data storage.
-
-**Key topics:**
 + RAM vs registers
 + Segmentation and Addressing
 + Memory-mapped I/O (MMIO)
 
-## I/O and Interrupts
-The CPU communicates with hardware through I/O ports and handles asynchronous events using interrupts.
-
-> *Don't go too deep on this. We'll revisit it when we get to the kernel.*
-
-**Key topics:**
-+ I/O ports
-+ Interrupts
+## Interrupts
++ System Interrupts
 + BIOS interrupts
-
-## Processor Modes
-x86 processors support multiple modes of operation. Understanding these modes is critical for writing a bootloader and kernel.
-
-**Key topics:**
-+ Real mode
-+ Protected mode
-+ Long mode
-
-## Buses
-Buses are communication pathways used by the CPU to interact with memory and peripherals.
-
-+ Types of buses: address bus, data but, control but.
-
-> *Keep this brief too.*
++ Hardware interrupts
