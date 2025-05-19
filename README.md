@@ -38,7 +38,7 @@ Everything is written to be clear, practical, and beginner-accessible.
 
 - [Roadmap](roadmap/roadmap.md)
 - [Welcome](notes/welcome.md)
-- 
+
 Or check the full [Table of Contents](SUMMARY.md)!
 
 ---
