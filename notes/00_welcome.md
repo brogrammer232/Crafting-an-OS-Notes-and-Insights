@@ -7,8 +7,8 @@ Good. You're exactly where you need to be.
 
 ## What is OS Development?
 
-Operating system development is the art (and chaos) of writing code that runs *without* another OS underneath.  
-You're not writing Python scripts on top of Linux, you're writing the *thing* that boots *before* Linux even wakes up.
+Operating system development is the art (and chaos) of writing code that runs without another OS underneath.  
+You're not writing Python scripts on top of Linux, you're writing the thing that boots before Linux even wakes up.
 
 You'll be dealing with:
 - Bare-metal code that boots from BIOS or UEFI
@@ -28,7 +28,7 @@ And it’s **incredibly rewarding**.
 
 First of all: bragging rights.
 
-Then there's the fact that it forces you to understand how a computer *actually* works.
+Then there's the fact that it forces you to understand how a computer actually works.
 
 Building an OS teaches you:
 - How computers actually work under the hood
@@ -44,11 +44,9 @@ You stop thinking of a CPU as "just a black box that runs code" and start seeing
 + An unstoppable mindset
 
 ## Final Words
-
 OS dev isn’t easy, and that’s the point.  
 If you’re here, you’ve already got curiosity and stubbornness. That’s all you need to start.
 
 Welcome to the deep end.
 
 Now go write your own OS.
-
