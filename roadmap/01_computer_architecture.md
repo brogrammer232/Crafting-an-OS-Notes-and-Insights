@@ -14,6 +14,7 @@ This roadmap outlines the essential concepts of computer architecture that must 
 + Pointer and index registers: `SP`, `BP`, `SI`, `DI`.
 + Instruction pointer: `IP`.
 + Flags register: `FLAGS/EFLAGS`.
++ Control registers: `CR0`, `CR1`, `CR2`, `CR3`, `CR4`.
 
 ## Binary and Hexadecimal
 + Binary
