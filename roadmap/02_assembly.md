@@ -29,4 +29,4 @@ Assembly language provides direct control over hardware. It is essential for wri
 + `INT`. Play around with system interrupts then BIOS interrupts.
 
 ## Assembler Instructions
-+ Learn the following NASM assembler instructions: `BITS`, `ORG`, EQU`, `TIMES`, etc. The rest will be in the notes folder.
++ Learn the following NASM assembler instructions: `BITS`, `ORG`, `EQU`, `TIMES`, etc. The rest will be in the notes folder.
