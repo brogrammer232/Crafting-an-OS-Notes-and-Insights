@@ -1,6 +1,6 @@
 # BIOS Interrupts
 
-**Random Quote:** Before the OS takes the wheel, the BIOS hands you the keys.
+> **Random Quote:** Before the OS takes the wheel, the BIOS hands you the keys.
 
 BIOS interrupts provide a standardized interface to hardware services during early boot, before the operating system takes full control. Learning how to use them is essential for writing real-mode bootloaders and early diagnostics.
 
