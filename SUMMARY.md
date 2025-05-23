@@ -1,6 +1,9 @@
 # Table of contents
 > **Random Quote:** In the chaos of bits and bytes, a good map keeps your direction clear.
 
+## Introduction to OS development
++ [Welcome](./notes/welcome.md)
+
 ## Roadmap
 + [Main roadmap file](./roadmap/00_roadmap.md)
 
@@ -10,5 +13,5 @@ These files contain detailed roadmaps on specific topics:
 + [BIOS Interrupts](./roadmap/03_bios_interrupts.md)
 + [Bootloader](./roadmap/04_bootloader.md)
 
-## Introduction to OS development
-+ [Welcome](./notes/welcome.md)
+## Computer Architecture
++ [CPU](./notes/01_computer_architecture/01_cpu.md)
