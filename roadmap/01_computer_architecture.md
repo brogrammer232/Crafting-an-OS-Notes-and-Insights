@@ -4,6 +4,7 @@
 This roadmap outlines the essential concepts of computer architecture that must be understood before beginning OS development. A solid grasp of these fundamentals is necessary before moving on to writing low-level code.
 
 ## CPU
+This is covered [here](../notes/01_computer_architecture/01_cpu.md).
 + The Fetch-Decode-Execute cycle.
 + The boot sequence.
 + Processor modes.
