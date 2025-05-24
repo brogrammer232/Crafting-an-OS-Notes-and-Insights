@@ -7,3 +7,4 @@ This directory contains information on essential concepts of computer architectu
 ---
 
 + [The CPU](./01_cpu.md)
++ [Registers](./02_registers.md)
