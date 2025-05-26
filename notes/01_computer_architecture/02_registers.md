@@ -85,11 +85,11 @@ These are the pointer registers: `IP`, `SP`, `BP`, `SI`, `DI`.
 + `SP`: **Stack Pointer.** This points to the top of the stack. The stack grows downwards in memory (addresses decrease as stack grows). You can set this to whatever you want. It is used by instructions like `PUSH`, `POP`, `CALL` and `RET`.
 
 + `BP`: **Base Pointer.** This is used to access function arguments and local variables in the stack. Often used like this:
-```assembly
-;This will all make sense later.
-MOV EBP, ESP        ;Set up stack frame.
-MOV EAX, [EBP+8]    ;Get first function argument.
-```
+    ```assembly
+    ;This will all make sense later.
+    MOV EBP, ESP        ;Set up stack frame.
+    MOV EAX, [EBP+8]    ;Get first function argument.
+    ```
 
 + `SI` and `DI`: **Source Index** and **Destination Index**. `SI` points to memory source and `DI` points to memory destination. They are used in string/memory instructions like `MOVS`, `LODS` and `STOS`. They are also used for function parameters in x86\_64 clling convention.
 
