@@ -4,6 +4,8 @@
 
 **Registers** are small, ultra-fast memory locations built into the CPU. They store values the CPU is currently working with; like numbers, memory addresses, or instruction-related data. They are not general memory. You can't allocate them. You use them directly in assembly or indirectly through compiled code.
 
+Each CPU core has its own set of the registers discussed below. This lets each one run its own thread, independently and in parallel without interfering with each other.
+
 **Categories of registers:**
 + [General Purpose Registers](#general-purpose-registers)
 + [Segment Registers](#segment-registers)
@@ -134,23 +136,45 @@ These are the control flags: `IF`, `DF`, `TF`.
 
 + `TF`: **Trap Flag.** **BIT 8**. This flag enables "single-step" mode which is useful for debugging. When set (`TF = 1`), the CPU triggers **INT 1** after every instruction. This is used by debuggers like GDB to walk you through instruction by instruction.
 
-
-> **Note:** Everything after this line is incomplete (work in progress).
-
 ### System Flags
-OS and privilege level stuff.
-Cover these: IOPL, VM, AC.
+System flags control low-level CPU behaviors and indicate special processor states. They are used by the operating system and virtualization layers to manage stuff like: interrupt behavior, debugging traps, virtual 8086 mode, etc.
+
+These are the system flags: `RF`, `VM`, `AC`, `VIF`, `VIP`, `ID`.
+
++ `RF`: **Resume Flag**. **BIT 16**. This flag is used by debuggers to supress re-triggering of faults. When a debug exception (like a breakpoint) is hit, setting RF before `IRET` prevents the same instruction from causing another fault. This is used in the debug trap handler.
+
++ `VM`: **Virtual 8086 Mode**. **BIT 17**. This flag enables real-mode-like execution in protected mode. This is useful for running real-mode programs inside a 32-bit (protected mode OS).
+
++ `AC`: **Alignment Check**. **BIT 18**. When set, and in user mode, misaligned memory accesses (e.g. word on odd addresses) will throw #AC exceptions. This only works if CR0.AM (Alignment Mask) is also set. It is useful in debugging, but mostly disabled for performance.
+
++ `VIF`: **Virtual Interrupt Flag**. **BIT 19**. This flag is used by the **Virtual Machine Monitor (VMM)** to emulate IF (Interrupt Flag) in V8086 mode. This lets VMs simulate interrupts being enabled without giving them actual interrupt access.
+
++ `VIP`: **Virtual Interrupt Pending**. **BIT 20**. Indicates a virtual interrupt is pending, but IF is currently cleared. This lets the monitor know to deliver the interrupt later when IF is set.
+
++ `ID`: **ID Flag**. **BIT 21**. This flag allows software to execute the `CPUID` instruction if set. You can toggle this bit to check if a CPU supports `CPUID`.
 
 
+## Control Registers
+Control registers are special CPU registers used to control low-level processor features like memory management, protection, and hardware access.
 
+These registers can only be accessed in kernel mode (ring 0). Trying to access them in user mode results in a #GP (General Protection Fault).
 
+These are the control registers: `CR0`, `CR2`, `CR3`, `CR4`, and `CR8`. I promise I didn't miss any. `CR1`, `CR5`, `CR6` and `CR7` were reserved for future expansion, but nothing has been implemented yet. They physically don't exist on the CPU. Reading or writing to them will trigger a #UD (Invalid Opcode Exception).
 
++ `CR0`: This register is used to enable protected mode, paging, and write protection.
+    - **BIT 0**. **PE**. Setting this bit will enable 32-bit protected mode.
+    - **BIT 31**. **PG**. Setting this bit will enable virtual memory paging.
+    - **BIT 16**. **WP**. Setting this bit will enable write protect. This will protect read-only pages even in kernel mode.
+    - **BIT 18**. **AM**. Alignment Mask. This is used together with `AC` flag for alignment checks.
 
++ `CR2`: **Page Fault Liner Address**. When a page fault (#PF) occurs, the CPU stores the address that caused it in `CR2`. The OS uses this to figure out what memory access failed and why.
 
++ `CR3`: **Page Directory Page Register (PDBR)**. This register points to the physical address of the page directory or PML4 (in x86\_64). When the OS switches page tables (e.g., during a context switch), it changes `CR3`. Also used by the CPU to cache translations in the TLB (Translation Lookaside Buffer). Changing `CR3` flushes the TLB.
 
++ `CR4`: This register is used to enable more advanced CPU features.
+    - **BIT 5**. **PAE**. Setting this bit enables Physical Address Extension (36-bit addresses).
+    - **BIT 9**. **OSFXSR**. This bit enables SSE instructions in OS (don't know what this means).
+    - **BIT 13**. **VMXE**. This bit enables VMX (Intel VT-x virtualization).
+    - **BIT 7**. **PGE**. Global Pages enabled (don't flush TLB on `CR3` switch).
 
-
-
-
-
-
++ `CR8`: **Task Priority Register (x86_64 only)**. This register controls the priority level for interrupts. It is used with APIC to mask lower-priority interrupts. This register is ignored in 32-bit mode.
