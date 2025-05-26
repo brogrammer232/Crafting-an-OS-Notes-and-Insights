@@ -16,3 +16,4 @@ These files contain detailed roadmaps on specific topics:
 ## Computer Architecture
 + [CPU](./notes/01_computer_architecture/01_cpu.md)
 + [Registers](./notes/01_computer_architecture/02_registers.md)
++ [Binary and Hexadecimal](./notes/01_computer_architecture/03_binary_and_hexadecimal.md)
