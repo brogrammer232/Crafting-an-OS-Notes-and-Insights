@@ -10,6 +10,7 @@ This is covered [here](../notes/01_computer_architecture/01_cpu.md).
 + Processor modes.
 
 ## Registers
+This is covered [here](../notes/01_computer_architecture/02_registers.md)
 + General purpose registers: `AX`, `BX`, `CX`, `DX`.
 + Segment registers: `CS`, `DS`, `SS`, `ES`, `FS`, `GS`.
 + Pointer and index registers: `SP`, `BP`, `SI`, `DI`.
@@ -18,6 +19,7 @@ This is covered [here](../notes/01_computer_architecture/01_cpu.md).
 + Control registers: `CR0`, `CR1`, `CR2`, `CR3`, `CR4`.
 
 ## Binary and Hexadecimal
+This is covered [here](../notes/01_computer_architecture/03_binary_and_hexadecimal.md)
 + Binary
 + Hexadecimal
 + Decimal
