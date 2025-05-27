@@ -8,3 +8,9 @@ This directory contains information on essential concepts of computer architectu
 
 + [The CPU](./01_cpu.md)
 + [Registers](./02_registers.md)
++ [General Purpose Registers](./03_general_purpose_registers.md)
++ [Segment Registers](./04_segment_registers.md)
++ [Pointer Registers](./05_pointer_registers.md)
++ [Flag Register](./06_flag_register.md)
++ [Control Registers](./07_control_registers.md)
++ [Binary and Hexadecimal](./08_binary_and_hexadecimal.md)
