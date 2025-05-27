@@ -19,7 +19,7 @@ This is covered [here](../notes/01_computer_architecture/02_registers.md)
 + Control registers: `CR0`, `CR1`, `CR2`, `CR3`, `CR4`.
 
 ## Binary and Hexadecimal
-This is covered [here](../notes/01_computer_architecture/03_binary_and_hexadecimal.md)
+This is covered [here](../notes/01_computer_architecture/08_binary_and_hexadecimal.md)
 + Binary
 + Hexadecimal
 + Decimal
