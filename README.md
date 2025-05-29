@@ -1,6 +1,6 @@
 # Crafting an OS: Notes and Insights
 
-> **Random quote:** "This isn't just code. It's a conversation with the machine. Speak clearly, or be misunderstood."
+> **Random Quote:** The more you sweat in training, the less you bleed in combat.
 
 Welcome to **Crafting an OS**, a living collection of notes, explanations, and examples from my journey into operating system development. I’m not following a rigid curriculum or dumping everything at once. These notes grow as I grow. Every page here reflects something I’ve learned, implemented, debugged (and probably broken at least once).
 
