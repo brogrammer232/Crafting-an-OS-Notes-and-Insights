@@ -3,11 +3,11 @@
 > **Random Quote:** You don't have to see the whole system call, just the next instruction.
 
 A **number system** is a way to represent and interpret numeric values. In OS development, you mainly use:
-+ [**Decimal**](#decimal)
-+ [**Binary**](#binary)
-+ [**Hexadecimal**](#hexadecimal)
++ [Decimal](#decimal)
++ [Binary](#binary)
++ [Hexadecimal](#hexadecimal)
 
-It's crucial you know how to convert from one number system to theother:
+It's crucial you know how to convert from one number system to the other:
 + [Decimal and Binary](#decimal-and-binary)
 + [Decimal and Hexadecimal](#decimal-and-hexadecimal)
 + [Binary and Hexadecimal](#binary-and-hexadecimal)
@@ -142,6 +142,7 @@ Hexadecimal is just as important as binary, if not more important. All memory lo
         1. Convert the binary to decimal then the decimal to hex.
         2. Use a table that shows the binary alongside the hex value.
     Personally, I recommend converting binary -> decimal -> hexadecimal. You won't always have the table, and honestly, I think it's faster to convert compared to looking for the file containing the table or having to google it (you may not always have an internet connection). Here's the table is you prefer it:
+   
         | Hex | Binary |
         | --- | ------ |
         | 0   | 0000   |
@@ -161,7 +162,7 @@ Hexadecimal is just as important as binary, if not more important. All memory lo
         | E   | 1110   |
         | F   | 1111   |
 
-2. **Hexadecimal to Binary:**
+3. **Hexadecimal to Binary:**
     + Replace each hex digit with its 4-bit binary equivalent. You can check the table or convert hexadecimal -> decimal -> binary. Your call.
 
     **Example:** Convert `0x3C` to binary.
