@@ -18,11 +18,11 @@ This is covered [here](../notes/01_computer_architecture/02_registers.md)
 + Flags register: `FLAGS/EFLAGS`.
 + Control registers: `CR0`, `CR1`, `CR2`, `CR3`, `CR4`.
 
-## Binary and Hexadecimal
-This is covered [here](../notes/01_computer_architecture/08_binary_and_hexadecimal.md)
+## Number Systems
+This is covered [here](../notes/01_computer_architecture/08_number_systems.md)
++ Decimal
 + Binary
 + Hexadecimal
-+ Decimal
 + Converting between binary, hexadecimal and decimal
 + Bit masking
 

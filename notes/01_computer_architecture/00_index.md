@@ -13,4 +13,4 @@ This directory contains information on essential concepts of computer architectu
 + [Pointer Registers](./05_pointer_registers.md)
 + [Flag Register](./06_flag_register.md)
 + [Control Registers](./07_control_registers.md)
-+ [Binary and Hexadecimal](./08_binary_and_hexadecimal.md)
++ [Number Systems](./08_number_systems.md)

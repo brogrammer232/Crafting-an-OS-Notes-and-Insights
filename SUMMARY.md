@@ -21,4 +21,4 @@ These files contain detailed roadmaps on specific topics:
 + [Pointer Registers](./notes/01_computer_architecture/05_pointer_registers.md)
 + [Flag Register](./notes/01_computer_architecture/06_flag_register.md)
 + [Control Registers](./notes/01_computer_architecture/07_control_registers.md)
-+ [Binary and Hexadecimal](./notes/01_computer_architecture/08_binary_and_hexadecimal.md)
++ [Number Systems](./notes/01_computer_architecture/08_number_systems.md)
