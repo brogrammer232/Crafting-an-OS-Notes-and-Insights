@@ -24,7 +24,23 @@ This is covered [here](../notes/01_computer_architecture/08_number_systems.md)
 + Binary
 + Hexadecimal
 + Converting between binary, hexadecimal and decimal
-+ Bit masking
+
+## Signed and Unsigned Numbers
++ Signed Numbers
++ Unsigned Numbers
++ Integer Representation (two's complement) (touch on the others).
+
+## Number Systems: Arithmetic
++ Binary arithmetic
++ Hexadecimal arithmetic
+
+## Bitwise Operations
++ AND, OR, XOR, NOT
++ Bitwise shifts (left shift, right shift) (logical vs arithmetic)
+
+## Endianness
++ Big-endian vs Little-endian
++ Reading multi-byte values in memory
 
 ## Volatile Memory
 + RAM vs registers
