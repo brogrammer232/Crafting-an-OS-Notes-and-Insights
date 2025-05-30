@@ -14,3 +14,4 @@ This directory contains information on essential concepts of computer architectu
 + [Flag Register](./06_flag_register.md)
 + [Control Registers](./07_control_registers.md)
 + [Number Systems](./08_number_systems.md)
++ [Signed and Unsigned Numbers](./09_signed_and_unsigned_numbers.md)
