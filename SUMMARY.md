@@ -22,4 +22,4 @@ These files contain detailed roadmaps on specific topics:
 + [Flag Register](./notes/01_computer_architecture/06_flag_register.md)
 + [Control Registers](./notes/01_computer_architecture/07_control_registers.md)
 + [Number Systems](./notes/01_computer_architecture/08_number_systems.md)
-+ [Signed and Unsigned Numbers](./notes/01_computer_architecture/09_signed_and_unsigned_numbers)
++ [Signed and Unsigned Numbers](./notes/01_computer_architecture/09_signed_and_unsigned_numbers.md)
