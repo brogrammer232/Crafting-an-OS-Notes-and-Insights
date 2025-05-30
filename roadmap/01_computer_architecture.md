@@ -26,7 +26,7 @@ This is covered [here](../notes/01_computer_architecture/08_number_systems.md)
 + Converting between binary, hexadecimal and decimal
 
 ## Signed and Unsigned Numbers
-This is covered [here](../notes/01_computer_architecture/09_signed_and_unsigned_numbers)
+This is covered [here](../notes/01_computer_architecture/09_signed_and_unsigned_numbers.md)
 + Signed Numbers
 + Unsigned Numbers
 + Integer Representation (two's complement) (touch on the others).
