@@ -13,44 +13,41 @@ It's crucial you know how to convert from one number system to the other:
 + [Binary and Hexadecimal](#binary-and-hexadecimal)
 
 ## Decimal
-The decimal system is the standard numerical base used in daily human activity. It operates on **base 10**, meaning each digit represents a power of 10 depending on its position. To make it simpler, a number in decimal is the sum of each digit multiplied by 10 raised to the digit's position (right to left, base 0). Example:
+The decimal system is the standard numerical base used in daily human activity, e.g, 1, 3 35.
+
+**Base:** Decimal operates on **base 10**, meaning each digit represents a power of 10 depending on its position. To make it simpler, a number in decimal is the sum of each digit multiplied by 10 raised to the digit's position (right to left, base 0). Example:
 ```
 745 = (7 x 10^2) + (4 x 10^1) + (5 x 10^0) = 700 + 40 + 5
 82 = (8 x 10^1) + (2 x 10^0) = 80 + 2
 ```
 
-In computing, decimal is mostly used for display purposes or user input. Internally, computers do not operate in decimal at all, it's translated for human convenience.
+**Use:** Decimal is mostly used for display purposes or user input. Internally, computers do not operate in decimal at all, it's translated for human convenience.
 
-Decimal is written as is. Example:
+**Writing in programs:** Decimal is written as is. Example:
 ```assembly
 INC AX, 8   ;8 is a decimal number.
 ```
 
 ## Binary
-The binary system is the native language of digital computers. It uses only two symbols: `0` and `1`. It represents: on/off, true/false, or low/high voltage states. Binary is **base 2**, meaning, each bit (binary digit) represents a power of 2. Positions go from right to left. Example:
+The binary system is the native language of digital computers. It uses only two symbols: `0` and `1`. It represents: on/off, true/false, or low/high voltage states.
+
+**Base:** Binary is **base 2**, meaning, each bit (binary digit) represents a power of 2. Positions go from right to left. Example:
 ```
 100 = (1 x 2^2) (0 x 2^1) (0 x 2^0)
 ```
 
-A **byte** is 8 bits (e.g, 10110011). Bit patterns are directly mapped to instructions, flags, registers, GDT entry values, etc. Example:
+**Use:** The CPU does everything in binary: all arithmetic, bit patterns are directly mapped to instructions, flags, registers, GDT entry values, etc. Example:
 ```
 "10111000 00000001 00000000 00000000 00000000" means "MOV EAX, 0x1".
 ```
 
-When writing binary, prefix it with `0b`. Example:
+**Writing in programs:** When writing binary in programs, prefix it with `0b`. Example:
 ```assembly
 MOV EAX, 0b10110001 ;Here, the binary is "10110001".
 ```
 
-Binary is very important in OS development. It is used in very man places like determining permissions by setting file mode bits with bitwise operations, bit flags (toggle features by changing bits), switching CPU modes, etc.
-
 ## Hexadecimal
-Hexadecimal uses 16 digits: `0-9` and `A-F`(10-15). It's a compact, human-friendly representation of binary. Hexadecimal is **base 16**, meaning each digit is a power of 16 depending on its position. Example:
-```
-2F = (2 x 16^1) (15 x 16^0) # F=15.
-```
-
-Numbers 10-15 are represented by letters:
+Hexadecimal is a compact, human-friendly representation of binary. It uses 16 digits: `0-9` and `A-F`(10-15). Numbers 10-15 are represented by letters:
 + A = 10
 + B = 11
 + C = 12
@@ -58,7 +55,14 @@ Numbers 10-15 are represented by letters:
 + E = 14
 + F = 15
 
-When writing hexadecimal, prefix it with `0x`. Example:
+**Base:** Hexadecimal is **base 16**, meaning each digit is a power of 16 depending on its position. Example:
+```
+2F = (2 x 16^1) (15 x 16^0) # F=15.
+```
+
+**Use:** Hexadecimal is used in a lot of places: all memory location are shown in hex, tools like `hexdump`, `objdump` display binary data in hex, dissassemblers show hex instructions, register values are usually shown in hex, among others. It's easier to write hex compared to writing binary.
+
+**Writing in programs:** When writing hexadecimal, prefix it with `0x`. Example:
 ```assembly
 MOV AX, 0xB8000 ;Something fun, 0xB8000 is the start of VGA text buffer. You'll enjoy playing with this.
 ```
@@ -66,8 +70,6 @@ In some assemblers, you can suffix it with `h`. Example:
 ```assembly
 MOV EAX, B8000h ;Same as the above.
 ```
-
-Hexadecimal is just as important as binary, if not more important. All memory locations are shown in hex like `0xB8000`, tools like `hexdump`, `objdump` display binary data in hex, disassemblers show hex instructions, register values are usually shown in hex, among others.
 
 ## Conversions
 ### Decimal and Binary
@@ -162,7 +164,7 @@ Hexadecimal is just as important as binary, if not more important. All memory lo
         | E   | 1110   |
         | F   | 1111   |
 
-3. **Hexadecimal to Binary:**
+2. **Hexadecimal to Binary:**
     + Replace each hex digit with its 4-bit binary equivalent. You can check the table or convert hexadecimal -> decimal -> binary. Your call.
 
     **Example:** Convert `0x3C` to binary.
