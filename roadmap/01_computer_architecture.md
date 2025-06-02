@@ -32,6 +32,7 @@ This is covered [here](../notes/01_computer_architecture/09_signed_and_unsigned_
 + Integer Representation (two's complement) (touch on the others).
 
 ## Number Systems: Arithmetic
+This is covered [here](../notes/01_computer_architecture/10_number_systems_arithmetic.md)
 + Binary arithmetic
 + Hexadecimal arithmetic
 
