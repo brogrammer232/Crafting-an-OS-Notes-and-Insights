@@ -1,7 +1,7 @@
-> This file should be deleted soon. It contains information on number systems arithmetic. This information will be placed in the `08_number_systems.md` file once I figure out how I will place it to make the information flow and not seem all over the place.
-
-
 # Binary Arithmetic
+
+> **Random Quote:** In theory, there is no difference between theory and practice. In practice, there is.
+
 Spoiler alert! Binary math isn't hard. It's just unfamiliar. Until it's not. Then it's fun.
 
 **Key Topics:**
