@@ -37,8 +37,9 @@ This is covered [here](../notes/01_computer_architecture/10_number_systems_arith
 + Hexadecimal arithmetic
 
 ## Bitwise Operations
+This is covered [here](../notes/01_computer_architecture/13_bitwise_operations.md)
 + AND, OR, XOR, NOT
-+ Bitwise shifts (left shift, right shift) (logical vs arithmetic)
++ Bitwise shifts (left shift, right shift)
 
 ## Endianness
 + Big-endian vs Little-endian
