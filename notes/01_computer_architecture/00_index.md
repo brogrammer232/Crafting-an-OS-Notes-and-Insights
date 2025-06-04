@@ -18,3 +18,4 @@ This directory contains information on essential concepts of computer architectu
 + [Number Systems Arithmetic](./10_number_systems_arithmetic.md)
     + [Binary Arithmetic](./11_binary_arithmetic.md)
     + [Hexadecimal Arithmetic](./12_hexadecimal_arithmetic.md)
++ [Bitwise Operations](./13_bitwise_operations.md)
