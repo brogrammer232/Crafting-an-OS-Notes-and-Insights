@@ -26,3 +26,4 @@ These files contain detailed roadmaps on specific topics:
 + [Number Systems Arithmetic](./notes/01_computer_architecture/10_number_systems_arithmetic.md)
     + [Binary Arithmetic](./notes/01_computer_architecture/11_binary_arithmetic.md)
     + [Hexadecimal Arithmetic](./notes/01_computer_architecture/12_hexadecimal_arithmetic.md)
++ [Bitwise Operations](./notes/01_computer_architecture/13_bitwise_operations.md)
