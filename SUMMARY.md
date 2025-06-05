@@ -27,3 +27,4 @@ These files contain detailed roadmaps on specific topics:
     + [Binary Arithmetic](./notes/01_computer_architecture/11_binary_arithmetic.md)
     + [Hexadecimal Arithmetic](./notes/01_computer_architecture/12_hexadecimal_arithmetic.md)
 + [Bitwise Operations](./notes/01_computer_architecture/13_bitwise_operations.md)
++ [Endianness](./notes/01_computer_architecture/14_endianness.md)
