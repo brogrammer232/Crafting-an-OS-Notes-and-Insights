@@ -19,3 +19,4 @@ This directory contains information on essential concepts of computer architectu
     + [Binary Arithmetic](./11_binary_arithmetic.md)
     + [Hexadecimal Arithmetic](./12_hexadecimal_arithmetic.md)
 + [Bitwise Operations](./13_bitwise_operations.md)
++ [Endianness](./14_endianness.md)
