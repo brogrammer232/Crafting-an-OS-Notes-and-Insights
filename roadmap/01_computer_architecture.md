@@ -42,6 +42,7 @@ This is covered [here](../notes/01_computer_architecture/13_bitwise_operations.m
 + Bitwise shifts (left shift, right shift)
 
 ## Endianness
+This is covered [here](../notes/01_computer_architecture/14_endianness.md)
 + Big-endian vs Little-endian
 + Reading multi-byte values in memory
 
