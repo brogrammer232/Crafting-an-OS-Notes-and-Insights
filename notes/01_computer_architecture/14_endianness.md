@@ -107,3 +107,37 @@ uint32_t swap32(uint32_t val) {
 ```
 
 This function, `swap32()` reverses the byte order of a 32-bit unsigned integer. If you input big-endian, it will output little-endian and vice-versa. This is called **byte swapping**, and it manually flips the byte order using bitwise operations.
+
+**Breakdown:**
++ Let's assume we pass in `0x12345678`. The function should reverse it and return `0x78563412`.
+
++ **Step 1:** Move the top byte `0x12`, all the way to the left.
+    - `((val >> 24) & 0x000000FF)`.
+    - Note that val in our case is `0x12345678`.
+    - `(0x12345678 >> 24)` = `0x00000012`.
+    - `0x00000012 & 0x000000FF` = `0x00000012`. This makes sure that all the other bytes are zero.
+
++ **Step 2:** `((val >> 8) & 0x0000FF00)`
+    - `(0x12345678 >> 8)` = `0x00123456`
+    - `0x00123456 & 0x0000FF00` = `0x00003400`
+
++ **Step 3:** `((val << 8) & 0x00FF0000)`
+    - `(0x12345678 << 8)` = `0x34567800`
+    - `0x34567800 & 0x00FF0000` = `0x00560000`
+
++ **Step 4:** `((val << 24) & 0xFF000000)`
+    - `(0x12345678 << 24)` = `0x78000000`
+    - `0x78000000 & 0xFF000000` = `0x78000000`
+
++ **Step 5:** Put it all together.
+    ```
+    0x00000012 | 0x00003400 | 0x00560000 | 0x78000000
+    Final result: 0x78563412
+    ```
+    Cool. Reverse successfull!
+
+Final note: Using `& 0x000000FF` or any other variation of that hexadecimal is called masking. It zeroes out all the other bytes and preserves the byte with `FF`.
+
+---
+
+## Endianness in Assembly
