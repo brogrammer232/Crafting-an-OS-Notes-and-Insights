@@ -4,28 +4,44 @@
 
 Endianness defines the order in which bytes are stored for multi-byte data types in computer memory.
 
-There are 2 types of byte orders:
-1. **Little-Endian**
-2. **Big-Endian / Network Byte Order**
+There are 2 main types of byte orders:
 
-In **little-endian**, the LSB (least significant byte) comes first. Example: `0x12345678` will be stored as `78 56 34 12`.
+1. **Little-endian**
+2. **Big-endian** (also called **Network Byte Order**)
 
-In **big-endian**, the MSB (most significant byte) comes first. Example: `0x12345678` will be stored as `12 34 56 78`.
+In **little-endian**, the **least significant byte (LSB)** comes first. Example:
+
+```
+0x12345678 -> 78 56 34 12
+```
+
+In **big-endian**, the **most significant byte (MSB)** comes first. Example:
+
+```
+0x12345678 -> 12 34 56 78
+```
 
 ---
 
-### Where they are used
-+ **Intel** CPUs use **little-endian**.
-+ **PowerPC, SPARKC, some ARM systems** use **big-endian**.
-+ **ARM** devices can run in **bi-endian** mode. This means that they can use both big-endian and little-endian.
-+ The **network** uses **big-endian**. That's why it's also called **network byte order**. Internet protocols like TCP/IP use big-endian.
+## Where They're Used
+
+* **Intel x86/x86\_64** CPUs use **little-endian**.
+* **PowerPC, SPARC, some ARM** systems use **big-endian**.
+* **ARM** is **bi-endian**: can operate in both modes.
+* The **network** (e.g. TCP/IP) uses **big-endian**, which is why it's called **network byte order**.
 
 Your computer stores numbers in **host byte order**. If it's an intel, host byte order is little-endian. If it's a SPARKC (or something else that uses big-endian), host byte order is big-endian.
 
+### Real-World Implications
+
+* **Binary file parsing:** You must know the byte order used in file storage.
+* **Network programming:** You often need to convert between host and network byte order.
+* **Cross-platform bugs:** Data sharing between different-endian systems can break things if not handled.
+
 ---
 
-### Detecting Endianness
-This C program determines whether the system is little-endian or big-endian by looking at how multi-byte value is stored in memory.
+## Detecting Endianness
+This program checks how a multi-byte integer is stored in memory:
 
 ```C
 #include <stdio.h>
@@ -40,6 +56,8 @@ int main() {
     return 0;
 }
 ```
+
+**Explanation:**
 
 + `unsigned int x = 1;`: This line declares a 4-byte (typically) integer with the value `1`. It looks like this in hexadecimal: `0x00000001`.
 
@@ -65,12 +83,16 @@ int main() {
 
 ---
 
-### Converting Between Endianness
+## Converting Between Endianness
 There are 2 types of numbers that you can convert:
+
 1. **short**: Two bytes.
 2. **long**: Four bytes.
 
-Remenber this:
+### Using Standard Functions
+
+Mnemonic:
+
 + Host: `h`
 + Network: `n`
 + Short: `s`
@@ -86,17 +108,16 @@ Say you want to convert a short number from host byte order to network byte orde
 
 You can use the other combinations to come up with the following functions:
 
-| **Function** 	| **Description** 	|
-|---------------|-------------------|
-| `htons()` 	| Host to network short |
-| `htonl()` 	| Host to network long 	|
-| `ntohs()` 	| Network to host short |
-| `ntohl()` 	| Network to host long 	|
+| Function  | Meaning               |
+| --------- | --------------------- |
+| `htons()` | Host to network short |
+| `htonl()` | Host to network long  |
+| `ntohs()` | Network to host short |
+| `ntohl()` | Network to host long  |
 
 #### Manual conversion
-If you love pain, you can also use bitwise operations to do this manually.
+If you love pain, you can do it manually using bitwise operations.
 
-**Example:**
 ```c
 uint32_t swap32(uint32_t val) {
     return ((val >> 24) & 0x000000FF) |
@@ -136,8 +157,26 @@ This function, `swap32()` reverses the byte order of a 32-bit unsigned integer. 
     ```
     Cool. Reverse successfull!
 
-Final note: Using `& 0x000000FF` or any other variation of that hexadecimal is called masking. It zeroes out all the other bytes and preserves the byte with `FF`.
++ Bitwise `AND` masks out unwanted bits after shifting.
++ Bitwise `OR` combines the shifted pieces.
 
 ---
 
 ## Endianness in Assembly
+
+On a **little-endian** machine, pushing `0x12345678` onto the stack results in:
+
+```
+[SP+0] = 0x78
+[SP+1] = 0x56
+[SP+2] = 0x34
+[SP+3] = 0x12
+```
+
+Important for understanding:
+
+* System call ABI expectations
+* Memory dumps and debugging
+* Traps and register state layouts
+
+---
