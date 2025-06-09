@@ -20,3 +20,4 @@ This directory contains information on essential concepts of computer architectu
     + [Hexadecimal Arithmetic](./12_hexadecimal_arithmetic.md)
 + [Bitwise Operations](./13_bitwise_operations.md)
 + [Endianness](./14_endianness.md)
++ [Volatile and Non-Volatile Memory](./15_volatile_and_non_volatile_memory.md)
