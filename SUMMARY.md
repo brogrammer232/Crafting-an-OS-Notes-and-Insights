@@ -28,3 +28,4 @@ These files contain detailed roadmaps on specific topics:
     + [Hexadecimal Arithmetic](./notes/01_computer_architecture/12_hexadecimal_arithmetic.md)
 + [Bitwise Operations](./notes/01_computer_architecture/13_bitwise_operations.md)
 + [Endianness](./notes/01_computer_architecture/14_endianness.md)
++ [Volatile and Non-Volatile Memory](./notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
