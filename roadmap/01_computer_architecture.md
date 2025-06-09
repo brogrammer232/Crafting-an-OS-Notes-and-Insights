@@ -63,6 +63,8 @@ This is covered [here](../notes/01_computer_architecture/14_endianness.md)
 
 ## Volatile and Non-Volatile Memory
 
+This is covered [here](../notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
+
 + RAM vs ROM
 + Difference in read/write speeds
 + Use cases
