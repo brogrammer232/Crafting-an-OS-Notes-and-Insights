@@ -69,11 +69,16 @@ This is covered [here](../notes/01_computer_architecture/15_volatile_and_non_vol
 + Difference in read/write speeds
 + Use cases
 
+## Memory Layout in real mode
+
++ 1 MiB addressable space.
++ Conventional memory, upper memory, BIOS, etc.
++ The bootloader's size and location.
+
 ## Memory Addressing
 
 + Segmentation and Offset.
 + Memory regions (`0x0000` - `0xFFFF`)
-+ Real mode memory map (`0x7C00`)
 
 ## Calculating Memory Sizes
 
@@ -86,8 +91,4 @@ This is covered [here](../notes/01_computer_architecture/15_volatile_and_non_vol
 + Why `0xB8000` maps to video memory in text mode.
 + Early interaction with screen/keyboard via memory.
 
-## Memory Layout in real mode
 
-+ 1 MiB addressable space.
-+ Conventional memory, upper memory, BIOS, etc.
-+ How the bootloader fits into this.
