@@ -10,8 +10,27 @@ Learn:
 + What is the boot signature and why is it useful.
 
 
-## Real Mode Constraints
-+ Learn about the challenges of 16-bit real mode like 1 MB memory limitation.
+## Memory Layout in real mode
+
++ 1 MiB addressable space.
++ Conventional memory, upper memory, BIOS, etc.
++ The bootloader's size and location.
+
+## Memory Addressing
+
++ Segmentation and Offset.
++ Memory regions (`0x0000` - `0xFFFF`)
+
+## Calculating Memory Sizes
+
++ Calculating size of memory ranges (e.g. `0x7C00` to `0x7CFF`)
++ Understanding kilobytes, megabytes, etc, in binary form (1 KiB = 1024 bytes).
+
+## Memory-Mapped I/O (MMIO)
+
++ Why devices appear as memory addresses.
++ Why `0xB8000` maps to video memory in text mode.
++ Early interaction with screen/keyboard via memory.
 
 ## Reading the kernel
 + Revisit BIOS interrupt (`INT 0x13`) to read the OS kernel from disk into memory.
