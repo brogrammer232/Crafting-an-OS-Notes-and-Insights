@@ -29,3 +29,4 @@ These files contain detailed roadmaps on specific topics:
 + [Bitwise Operations](./notes/01_computer_architecture/13_bitwise_operations.md)
 + [Endianness](./notes/01_computer_architecture/14_endianness.md)
 + [Volatile and Non-Volatile Memory](./notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
++ [Real Mode Memory Layout](./notes/01_computer_architecture/16_real_mode_memory_layout.md)
