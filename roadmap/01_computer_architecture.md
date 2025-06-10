@@ -71,6 +71,8 @@ This is covered [here](../notes/01_computer_architecture/15_volatile_and_non_vol
 
 ## Memory Layout in real mode
 
+This is covered [here](../notes/01_computer_architecture/16_real_mode_memory_layout.md)
+
 + 1 MiB addressable space.
 + Conventional memory, upper memory, BIOS, etc.
 + The bootloader's size and location.
