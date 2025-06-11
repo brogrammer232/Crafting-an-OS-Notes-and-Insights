@@ -35,7 +35,7 @@ This repository is built for **all**; **beginners** who are curious about low-le
 ## Where to Start
 
 - [Roadmap](roadmap/README.md)
-- [Welcome](notes/welcome.md)
+- [Welcome](notes/README.md)
 
 Or check the full [Table of Contents](SUMMARY.md)!
 
