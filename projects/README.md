@@ -2,4 +2,4 @@
 
 > **Random Quote:** Simplicity is prerequisite for realiability.
 
-This directory contains projects I worked on as I learned. I highly recommend you try to re-create them.
+This directory will soon contain projects I worked on as I learned. I highly recommend them for practice.
