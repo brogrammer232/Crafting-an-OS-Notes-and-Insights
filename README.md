@@ -41,6 +41,13 @@ Or check the full [Table of Contents](SUMMARY.md)!
 
 ---
 
+## Related Repositories
+
++ [Bare-Bones-Assembly](https://github.com/brogrammer232/Bare-Bones-Assembly)
++ (Coming Soon) [C-Systems-Programming](#)
+
+---
+
 ## License
 
 This project is licensed under the MIT License because knowledge should be free.
