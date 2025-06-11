@@ -43,7 +43,7 @@ Or check the full [Table of Contents](SUMMARY.md)!
 
 ## Related Repositories
 
-+ [Bare-Bones-Assembly](https://github.com/brogrammer232/Bare-Bones-Assembly)
++ [Bare-Metal-Assembly](https://github.com/brogrammer232/Bare-Metal-Assembly)
 + (Coming Soon) [C-Systems-Programming](#)
 
 ---
