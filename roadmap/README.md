@@ -10,8 +10,7 @@ No prior experience with systems programming is required, just curiosity, patien
 
 + [Basic Computer Architecture](./01_computer_architecture.md)
 + [Assembly](./02_assembly.md)
-+ [BIOS Interrupts](./03_bios_interrupts.md)
-+ [Bootloader](./04_bootloader.md)
++ [Bootloader](./03_bootloader.md)
 
 *By this point, you'll be able to write a simple bootloader that can load and jump to a simple kernel.* **Congratulations!! Not many make it this far.**
 
