@@ -1,19 +1,27 @@
 # Table of contents
+
 > **Random Quote:** In the chaos of bits and bytes, a good map keeps your direction clear.
 
 ## Introduction to OS development
-+ [Welcome](./notes/welcome.md)
+
++ [Welcome](./notes/README.md)
+
+---
 
 ## Roadmap
-+ [Main roadmap file](./roadmap/00_roadmap.md)
+
++ [Main roadmap file](./roadmap/README.md)
 
 These files contain detailed roadmaps on specific topics:
+
 + [Computer Architecture](./roadmap/01_computer_architecture.md)
 + [Assembly](./roadmap/02_assembly.md)
-+ [BIOS Interrupts](./roadmap/03_bios_interrupts.md)
-+ [Bootloader](./roadmap/04_bootloader.md)
++ [Bootloader](./roadmap/03_bootloader.md)
+
+---
 
 ## Computer Architecture
+
 + [CPU](./notes/01_computer_architecture/01_cpu.md)
 + [Registers](./notes/01_computer_architecture/02_registers.md)
     + [General Purpose Registers](./notes/01_computer_architecture/03_general_purpose_registers.md)
@@ -29,3 +37,13 @@ These files contain detailed roadmaps on specific topics:
 + [Bitwise Operations](./notes/01_computer_architecture/13_bitwise_operations.md)
 + [Endianness](./notes/01_computer_architecture/14_endianness.md)
 + [Volatile and Non-Volatile Memory](./notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
+
+---
+
+## Assembly
+
+For a focused and beginner-friendly guide to x86 Assembly, check out the [Bare-Metal Assembly](https://github.com/brogrammer232/Bare-Metal-Assembly) repository. It covers everything from setting up your environment to writing real mode bootloaders, all tailored for OS development.
+
+---
+
+## Bootloader
