@@ -26,7 +26,6 @@ This repository is built for **all**; **beginners** who are curious about low-le
 - [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel.
 - [**`tools/`**](./tools): Scripts and helpers to automate the boring parts and save time.
 - [CONTRIBUTING.md](./CONTRIBUTING.md): Want to help? This file tells you how; and more importantly, how *not* to.
-- [glossary.md](./glossary.md): Definitions of difficult terms used throughout the notes.
 - [LICENSE](./LICENSE): Legal stuff you’ll probably never read.
 - [SUMMARY.md](./SUMMARY.md): An index of everything in the repo for quick navigation.
 
