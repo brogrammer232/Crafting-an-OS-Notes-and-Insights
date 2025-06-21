@@ -1,22 +1,22 @@
-# Understanding basic computer architecture
+# Understanding Basic Computer Architecture
 
-> **Random Quote:** The CPU is the heart of the machine, learn its rhythm, and you can make it dance.
+> **Random Quote:** The CPU is the heart of the machine. Learn its rhythm, and you can make it dance.
 
-This roadmap outlines the essential concepts of computer architecture that must be understood before beginning OS development. A solid grasp of these fundamentals is necessary before moving on to writing low-level code.
+This roadmap outlines the essential concepts of computer architecture that should be understood before starting operating system development. A strong understanding of these basics is important before working with low-level code.
 
 ## CPU
 
-This is covered [here](../notes/01_computer_architecture/01_cpu.md).
+Covered in: [CPU Overview](../notes/01_computer_architecture/01_cpu.md).
 
-+ The Fetch-Decode-Execute cycle.
++ The fetch-decode-execute cycle.
 + The boot sequence.
 + Processor modes.
 
 ## Registers
 
-This is covered [here](../notes/01_computer_architecture/02_registers.md)
+Covered in: [Registers](../notes/01_computer_architecture/02_registers.md)
 
-+ General purpose registers: `AX`, `BX`, `CX`, `DX`.
++ General-purpose registers: `AX`, `BX`, `CX`, `DX`.
 + Segment registers: `CS`, `DS`, `SS`, `ES`, `FS`, `GS`.
 + Pointer and index registers: `SP`, `BP`, `SI`, `DI`.
 + Instruction pointer: `IP`.
@@ -25,7 +25,7 @@ This is covered [here](../notes/01_computer_architecture/02_registers.md)
 
 ## Number Systems
 
-This is covered [here](../notes/01_computer_architecture/08_number_systems.md)
+Covered in: [Number Systems](../notes/01_computer_architecture/08_number_systems.md)
 
 + Decimal
 + Binary
@@ -34,37 +34,37 @@ This is covered [here](../notes/01_computer_architecture/08_number_systems.md)
 
 ## Signed and Unsigned Numbers
 
-This is covered [here](../notes/01_computer_architecture/09_signed_and_unsigned_numbers.md)
+Covered in: [Signed and Unsigned Numbers](../notes/01_computer_architecture/09_signed_and_unsigned_numbers.md)
 
 + Signed Numbers
 + Unsigned Numbers
-+ Integer Representation (two's complement) (touch on the others).
++ Integer Representation (two's complement, and brief mention of other methods).
 
 ## Number Systems: Arithmetic
 
-This is covered [here](../notes/01_computer_architecture/10_number_systems_arithmetic.md)
+Covered in: [Arithmetic in Number Systems](../notes/01_computer_architecture/10_number_systems_arithmetic.md)
 
 + Binary arithmetic
 + Hexadecimal arithmetic
 
 ## Bitwise Operations
 
-This is covered [here](../notes/01_computer_architecture/13_bitwise_operations.md)
+Covered in: [Bitwise Operations](../notes/01_computer_architecture/13_bitwise_operations.md)
 
 + AND, OR, XOR, NOT
-+ Bitwise shifts (left shift, right shift)
++ Bitwise shifts: left shift, right shift
 
 ## Endianness
 
-This is covered [here](../notes/01_computer_architecture/14_endianness.md)
+Covered in: [Endianness](../notes/01_computer_architecture/14_endianness.md)
 
-+ Big-endian vs Little-endian
++ Big-endian vs little-endian
 + Reading multi-byte values in memory
 
 ## Volatile and Non-Volatile Memory
 
-This is covered [here](../notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
+Covered in: [Volatile and Non-Volatile Memory](../notes/01_computer_architecture/15_volatile_and_non_volatile_memory.md)
 
 + RAM vs ROM
 + Difference in read/write speeds
-+ Use cases
++ Common use cases
