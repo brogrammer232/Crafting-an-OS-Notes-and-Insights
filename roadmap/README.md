@@ -1,18 +1,20 @@
-# OS dev roadmap
+# OS Development Roadmap
 
-> **Random Quote:** It doesn't matter how long the path is, if you can see the next step, take it.
+> **Random Quote:** It doesn't matter how long the path is; if you can see the next step, take it.
 
-Welcome to the OS Development Roadmap. This guide is designed to take you from zero to kernel, starting with the absolute basics like how a CPU works, learning Assembly and C, and gradually progressing toward building your own bootloader and kernel that runs directly on hardware.
+Welcome to the Operating System Development Roadmap. This guide is intended to help you progress from a complete beginner to someone capable of writing a basic kernel. It begins with foundational topics such as understanding how a CPU works, leaning Assembly and C, and gradually leads to building your own bootloader and kernel that can run directly on bare metal.
 
-No prior experience with systems programming is required, just curiosity, patience, and a willingness to get your hands dirty with low-level code.
+No prior experience in systems programming is necessary; only curiosity, patience, and a willingness to work closely with low-level code.
 
-## Building a Simple Bootloader Roadmap
+## Phase 1: Building a Simple Bootloader
 
 + [Basic Computer Architecture](./01_computer_architecture.md)
-+ [Assembly](./02_assembly.md)
-+ [Bootloader](./03_bootloader.md)
++ [Assembly Language](./02_assembly.md)
++ [Bootloader Development](./03_bootloader.md)
 
-*By this point, you'll be able to write a simple bootloader that can load and jump to a simple kernel.* **Congratulations!! Not many make it this far.**
+> *By the end of this phase, you will be able to write a simple bootloader that loads and transfers control to a basic kernel.*
+
+**Congratulations, very few reach this point.**
 
 ## Building a Simple Kernel Roadmap
 
