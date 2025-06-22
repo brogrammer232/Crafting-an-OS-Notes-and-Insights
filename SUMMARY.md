@@ -52,6 +52,10 @@ For a focused and beginner-friendly guide to x86 Assembly, check out the [Bare-M
 
 ## Resources
 
+### Images
+
++ [Fetch, decode, execute cycle](./resources/images/fetch-decode-execute-cycle.png)
+
 ---
 
 ## Tools
