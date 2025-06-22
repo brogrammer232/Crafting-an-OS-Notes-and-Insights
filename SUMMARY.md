@@ -48,9 +48,13 @@ For a focused and beginner-friendly guide to x86 Assembly, check out the [Bare-M
 
 ## Projects
 
++ [Projects](./projects/README.md)
+
 ---
 
 ## Resources
+
++ [Resources](./resources/README.md)
 
 ### Images
 
@@ -59,3 +63,7 @@ For a focused and beginner-friendly guide to x86 Assembly, check out the [Bare-M
 ---
 
 ## Tools
+
++ [Tools](./tools/README.md)
+
+---
