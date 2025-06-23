@@ -1,57 +1,63 @@
-# Welcome to OS Development
+# Welcome to Operating System Development
 
-> **Random quote:** If you are not prepared to go all the way, why take the first step?
+> **Random Quote:** If you are not prepared to go all the way, why take the first step?
 
+## What is Operating System Development?
 
-## What is OS Development?
+Operating system (OS) development is the complex and technical process of writing software that operates without relying on an existing OS.
+You are not scripting in Python on top of Linux, you are creating the foundational software that runs before Linux even starts.
 
-Operating system development is the art (and chaos) of writing code that runs without an OS underneath.  
-You're not writing Python scripts on top of Linux, you're writing the thing that boots before Linux even wakes up.
+This journey involves:
 
-You'll be dealing with:
++ Writing bare-metal code that runs directly from BIOS or UEFI
++ Managing memory without the convenience of `malloc()`
++ Handling interrupts, timers, and CPU privilege levels
++ Creating your own standard library
++ Developing hardware drivers from scratch
++ Designing a custom system call interface
++ Bootstrapping your own userland environment
 
-- Bare-metal code that boots from BIOS or UEFI
-- Memory management without `malloc()`
-- Interrupts, timers, and CPU privilege levels
-- Building your own standard library
-- Writing drivers from scratch
-- Designing your own syscall interface
-- Bootstrapping your own userland
+It is a blend of challenge, discovery, and late nights.
+It is low-level, intricate, and often overwhelming.
 
-It’s an ocean of fun, pain, and sleepless nights.  
-It’s low-level. It’s messy. It’s humbling.
+Yet, it is **extremely rewarding**.
 
-And it’s **insanely rewarding**.
+---
 
-## Why Bother?
+## Why Pursue It?
 
-First: bragging rights.
+Firstly: the satisfaction and pride of doing something few dare to try.
 
-Second: It forces you to understand how computers actually work.
+Secondly: it forces you to deeply understand how computers actually function.
 
-Building an OS teaches you:
+By building an operating system, you will learn:
 
-- How hardware and software interact beneath the abstractions
-- How CPUs, memory, and devices communicate
-- How an operating system juggles control over the entire machine
-- Why "files," "threads," and other abstractions are modern miracles
++ How hardware and software interact beyond high-level abstractions
++ How the CPU, memory, and peripheral devices communicate
++ How an OS manages and coordinates the entire machine
++ Why concepts like "files" and "threads" are modern miracles
 
-You'll stop seeing a CPU as "just a black box that runs code" and start seeing the layers: registers, stack frames, page tables, interrupt vectors, schedulers, filesystems - all the invisible machinery powering modern systems.
+You will begin to see the CPU not as a black box that "just runs code," but as a layered system involving registers, stack frames, page tables, interrupt vectors, schedulers, and filesystems, hidden mechanisms that make modern computing possible.
 
-## What you'll need
+---
 
-+ Curiosity about how computers really work
-+ Willingness to debug weird, confusing errors
-+ A mindset that refuses to quit
+## What You Will Need
 
-## Final Words
++ Curiosity about how computers truly operate
++ Patience and persistence to debug complex, unintuitive issues
++ A determined mindset that does not give up easily
 
-OS development isn't easy, and that's the point. If you're here, you've already got the curiosity you need.
+---
+
+## Final Thoughts
+
+Operating system development is not easy, and that is exactly the point. If you are reading this, you already have the curiosity required to begin.
 
 Welcome to the deep end.
 
-Now go build your own OS.
+---
 
 ## Next Step
 
-Check the [roadmap](../roadmap/README.md) to see where to begin.
+Refer to the [roadmap](../roadmap/README.md) to get started.
+
