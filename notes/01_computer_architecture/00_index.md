@@ -2,7 +2,7 @@
 
 > **Random Quote:** Programs must be written for people to read, and only incidentally for machines to execute.
 
-This directory contains information on essential concepts of computer architecture that must be understood before begining OS development. The notes here follow the roadmap.
+This directory contains information on essential concepts in computer architecture that should be understood before beginning operating system development. The notes provided here follow the structure outlined in the roadmap.
 
 ---
 
