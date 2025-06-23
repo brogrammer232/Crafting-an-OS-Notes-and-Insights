@@ -2,60 +2,111 @@
 
 > **Random Quote:** The gap between a dream and reality is closed by showing up.
 
-The **FLAG** register (**EFLAG** in 32-bit and **RFLAG** in 64-bit) is a special register that stores status bits reflecting the results of operations and controlling CPU behavior. It is read and updated automatically by the CPU based on arithmetic and control operations.
+The **FLAG** register (referred to as **EFLAGS** in 32-bit systems and **RFLAGS** in 64-bit systems) is a special-purpose CPU register that stores status bits. These flags reflect the outcome of operations and also control certain aspects of CPU behavior. The CPU reads and updates this register automatically based on arithmetic, logic, and control operations.
 
-There are three (3) **categories of flags**:
-1. [Status flags](#status-flags)
-2. [Control flags](#control-flags)
-3. [System flags](#system-flags)
+There are three main **categories of flags**:
+
+1. [Status Flags](#status-flags)
+2. [Control Flags](#control-flags)
+3. [System Flags](#system-flags)
+
+---
 
 ### Status Flags
-Status flags tell you about the result of the last operation. They reflect what happened after an instruction (like `ADD`, `SUB`, `CMP`, etc), and are essential for making decisions in code (like jumps).
 
-These are the status flags: `CF`, `PF`, `AF`, `ZF`, `SF`, `OF`.
+Status flags indicate the outcome of the most recent operation. They are especially useful for conditional logic, such as determining whether to jump, continue, or stop execution.
 
-+ `CF`: **Carry Flag**. **BIT 0**. This flag is used in unsigned arithmetic (a number can only be zero or positive but not negative). It is set when one of two things happen:
-    1. When an unsigned addition produces a carry out of the most significant bit (overflow). Example: When you try to add one to `0xFF`/`0b11111111`.
-    2. When an unsigned subraction requires a borrow (i.e., the result goes below zero). Example: When you try to subract 2 from 1.
+The key status flags include: `CF`, `PF`, `AF`, `ZF`, `SF`, `OF`.
 
-+ `PF`: **Parity Flag**. **BIT 2**. This flag is rarely used in modern code. It is set if the lowest byte of the result has an even number of 1s. Example: If `0b00001111` is the result, the parity flag will be set because there are 4 1s (even number of 1s). If `0b00001110` is the result, the parity flag will not be set because there are 3 1s (odd number of 1s).
+* **`CF` – Carry Flag (Bit 0):**
+  Used in **unsigned arithmetic**. Set when:
 
-+ `AF`: **Auxilliary Carry Flag**. **BIT 4**. This is another rarely used flag. It is set if there is a carry from bit 3 to bit 4. Example: Adding `0x01` to `0x0F` will result in `0x10`. There's a carry from bit 3 to 4 therefore, `AF` will be set. This is used in BCD (Binary-Coded Decimal) operations. Don't worry, you may never hear about this ever again. I hope I won't.
+  1. An addition operation causes a carry out of the most significant bit.
+     *Example: Adding 1 to `0xFF` causes an overflow.*
+  2. A subtraction operation requires a borrow.
+     *Example: Subtracting 2 from 1.*
 
-+ `ZF`: **Zero Flag**. **BIT 6**. This flag is very useful. It is set if the result of any operation is exactly zero. Example: Subtracting 3 from 3. The result is 0 therefore the zero flag will be set.
+* **`PF` – Parity Flag (Bit 2):**
+  Set if the lowest byte of the result has an even number of 1s.
+  *Example: `0b00001111` has four 1s (even), so `PF` is set. `0b00001110` has three 1s (odd), so `PF` is clear.*
+  Rarely used in modern code.
 
-+ `SF`: **Sign Flag**. **BIT 7**. This flag is used with signed numbers (can be 0, negative or positive). It is set if the most significant bit (MSB) is 1. This means that the number is negative.
+* **`AF` – Auxiliary Carry Flag (Bit 4):**
+  Set when there is a carry from bit 3 to bit 4.
+  *Example: `0x0F + 0x01 = 0x10`. A carry occurs between bit 3 and 4.*
+  Mostly used in Binary-Coded Decimal (BCD) arithmetic.
 
-+ `OF`: **Overflow Flag**. **BIT 11**. This flag is used in signed arithmetic (a number can be 0, negative, or positive). This flag is set if the sign bit is wrong after an operation. If `positive + positive` results in a `negative`. Example: Adding 1 (`0x01`) to 127 (`0x7F`). The result is `0x80` which as a signed number is -128. In this case, the overflow flag will be set.
+* **`ZF` – Zero Flag (Bit 6):**
+  Set if the result of an operation is exactly zero.
+  *Example: `3 - 3 = 0`, so `ZF` is set.*
 
-In your programs, you may tell the CPU to jump out of a loop when the zero flag is set (when a counter gets to 0), otherwise, jump to the top and keep looping (if the zero flag is not set).
+* **`SF` – Sign Flag (Bit 7):**
+  Set if the most significant bit of the result is 1, indicating a **negative** value in **signed arithmetic**.
 
-> You may be having a hard time understanding this. Don't worry. Stop trying to understand everything. Just get what you can for now. The rest will fall in place later when you get more pieces of the puzzle. Keep pushing soldier. 
+* **`OF` – Overflow Flag (Bit 11):**
+  Used in **signed arithmetic**. Set when the sign bit is incorrect due to overflow.
+  *Example: Adding 1 to 127 (`0x7F`) gives 128 (`0x80`), which is interpreted as -128. Overflow occurred, so `OF` is set.*
+
+In practice, you might write code that checks the Zero Flag to determine whether to exit a loop, or the Sign Flag to determine if a number is negative.
+
+> You might not fully understand these concepts right now, and that is completely fine. Focus on what makes sense at the moment. As you gain more context and experience, the rest will naturally fall into place. Keep going.
+
+---
 
 ### Control Flags
-These flags affect how the CPU behaves. They toggle CPU features.
 
-These are the control flags: `IF`, `DF`, `TF`.
+Control flags enable or disable specific CPU features.
 
-+ `IF`: **Interrupt Flag.** **BIT 9**. This flag controls whether the CPU responds to maskable interrupts. When set (`IF = 1`), the CPU will handle hardware interrupts (e.g. keyboard, timer). When not set (`IF = 0`), the CPU will ignore maskable interrupts. (*Maskable interrupts are interrupts that can be silenced and un-silenced. The opposite are interrupts that must be handled and cannot be ignored.*) You can set this to 0 (clear interrupts using the `CLI` instruction) when you want to perform critical operations without interruption.
+The control flags include: `IF`, `DF`, `TF`.
 
-+ `DF`: **Direction Flag.** **BIT 10**. This flag controls direction for string instructions like `MOVS`, `LODS`, etc. When not set, the CPU will process strings **forward** (increment index). When set, the CPU will process strings **backward** (decrement index). You set this flag using the `STD` instruction and clear it using the `CLD` instruction.
+* **`IF` – Interrupt Flag (Bit 9):**
+  Controls whether the CPU responds to maskable hardware interrupts.
 
-+ `TF`: **Trap Flag.** **BIT 8**. This flag enables "single-step" mode which is useful for debugging. When set (`TF = 1`), the CPU triggers **INT 1** after every instruction. This is used by debuggers like GDB to walk you through instruction by instruction.
+  * Set (`IF = 1`): Interrupts are enabled.
+  * Clear (`IF = 0`): Interrupts are disabled.
+    Use the `CLI` instruction to clear this flag during critical operations that should not be interrupted.
+
+* **`DF` – Direction Flag (Bit 10):**
+  Determines the direction for string operations.
+
+  * Clear: String instructions process data **forward** (increment pointer).
+  * Set: String instructions process data **backward** (decrement pointer).
+    Set using `STD`, clear using `CLD`.
+
+* **`TF` – Trap Flag (Bit 8):**
+  Enables single-step mode.
+
+  * When set, the CPU triggers **INT 1** after each instruction.
+  * Useful for debugging tools like GDB to walk through code instruction by instruction.
+
+---
 
 ### System Flags
-System flags control low-level CPU behaviors and indicate special processor states. They are used by the operating system and virtualization layers to manage stuff like: interrupt behavior, debugging traps, virtual 8086 mode, etc.
 
-These are the system flags: `RF`, `VM`, `AC`, `VIF`, `VIP`, `ID`.
+System flags control low-level CPU behavior and special processor states. They are mainly used by operating systems, debuggers, and virtualization layers.
 
-+ `RF`: **Resume Flag**. **BIT 16**. This flag is used by debuggers to supress re-triggering of faults. When a debug exception (like a breakpoint) is hit, setting RF before `IRET` prevents the same instruction from causing another fault. This is used in the debug trap handler.
+System flags include: `RF`, `VM`, `AC`, `VIF`, `VIP`, `ID`.
 
-+ `VM`: **Virtual 8086 Mode**. **BIT 17**. This flag enables real-mode-like execution in protected mode. This is useful for running real-mode programs inside a 32-bit (protected mode OS).
+* **`RF` – Resume Flag (Bit 16):**
+  Prevents an instruction from re-triggering a fault after being resumed by `IRET`. Used in debug exception handling.
 
-+ `AC`: **Alignment Check**. **BIT 18**. When set, and in user mode, misaligned memory accesses (e.g. word on odd addresses) will throw #AC exceptions. This only works if CR0.AM (Alignment Mask) is also set. It is useful in debugging, but mostly disabled for performance.
+* **`VM` – Virtual 8086 Mode (Bit 17):**
+  Enables real-mode-like execution within protected mode.
+  Used to run legacy real-mode applications in a 32-bit environment.
 
-+ `VIF`: **Virtual Interrupt Flag**. **BIT 19**. This flag is used by the **Virtual Machine Monitor (VMM)** to emulate IF (Interrupt Flag) in V8086 mode. This lets VMs simulate interrupts being enabled without giving them actual interrupt access.
+* **`AC` – Alignment Check (Bit 18):**
+  When set (and if CR0.AM is also set), misaligned memory accesses (such as reading a word at an odd address) cause an `#AC` exception.
+  Useful in debugging but often disabled for performance.
 
-+ `VIP`: **Virtual Interrupt Pending**. **BIT 20**. Indicates a virtual interrupt is pending, but IF is currently cleared. This lets the monitor know to deliver the interrupt later when IF is set.
+* **`VIF` – Virtual Interrupt Flag (Bit 19):**
+  Used by Virtual Machine Monitors (VMMs) to simulate the behavior of `IF` within virtual 8086 mode.
+  It allows VMs to behave as if interrupts are enabled without actually granting hardware interrupt access.
 
-+ `ID`: **ID Flag**. **BIT 21**. This flag allows software to execute the `CPUID` instruction if set. You can toggle this bit to check if a CPU supports `CPUID`.
+* **`VIP` – Virtual Interrupt Pending (Bit 20):**
+  Indicates that a virtual interrupt is pending, but `IF` is currently clear.
+  Helps the monitor delay interrupt delivery until `IF` is re-enabled.
+
+* **`ID` – ID Flag (Bit 21):**
+  Controls access to the `CPUID` instruction.
+  If the flag is set, software can execute `CPUID` to query the CPU for features and information.
+  You can toggle this bit to check whether `CPUID` is supported.

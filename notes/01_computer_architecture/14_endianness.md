@@ -2,20 +2,20 @@
 
 > **Random Quote:** Good code is its own best documentation.
 
-Endianness defines the order in which bytes are stored for multi-byte data types in computer memory.
+**Endianness** refers to the sequence in which bytes are arranged when storing multi-byte data types in computer memory.
 
-There are 2 main types of byte orders:
+There are two primary types of byte order:
 
 1. **Little-endian**
-2. **Big-endian** (also called **Network Byte Order**)
+2. **Big-endian** (also referred to as **Network Byte Order**)
 
-In **little-endian**, the **least significant byte (LSB)** comes first. Example:
+In **little-endian** systems, the **least significant byte (LSB)** is stored first. For example:
 
 ```
 0x12345678 -> 78 56 34 12
 ```
 
-In **big-endian**, the **most significant byte (MSB)** comes first. Example:
+In **big-endian** systems, the **most significant byte (MSB)** is stored first:
 
 ```
 0x12345678 -> 12 34 56 78
@@ -23,100 +23,77 @@ In **big-endian**, the **most significant byte (MSB)** comes first. Example:
 
 ---
 
-## Where They're Used
+## Where They Are Used
 
-* **Intel x86/x86\_64** CPUs use **little-endian**.
-* **PowerPC, SPARC, some ARM** systems use **big-endian**.
-* **ARM** is **bi-endian**: can operate in both modes.
-* The **network** (e.g. TCP/IP) uses **big-endian**, which is why it's called **network byte order**.
+* **Intel x86/x86\_64** processors use **little-endian** format.
+* **PowerPC, SPARC, and some ARM** systems use **big-endian** format.
+* **ARM** architecture is **bi-endian**, meaning it can operate in either mode.
+* **Network protocols** (such as TCP/IP) use **big-endian**, which is why it is commonly referred to as **network byte order**.
 
-Your computer stores numbers in **host byte order**. If it's an intel, host byte order is little-endian. If it's a SPARKC (or something else that uses big-endian), host byte order is big-endian.
+A computer uses the **host byte order**, which depends on its CPU architecture. For example, systems using Intel processors typically use little-endian, while others may use big-endian.
 
-### Real-World Implications
+---
 
-* **Binary file parsing:** You must know the byte order used in file storage.
-* **Network programming:** You often need to convert between host and network byte order.
-* **Cross-platform bugs:** Data sharing between different-endian systems can break things if not handled.
+## Real-World Implications
+
+* **Binary file parsing:** Correct interpretation of byte order is necessary when reading or writing binary files.
+* **Network programming:** Programs must often convert between host and network byte orders to ensure data is transmitted and received correctly.
+* **Cross-platform compatibility:** Systems with different endianness can encounter errors if byte order is not handled properly during data exchange.
 
 ---
 
 ## Detecting Endianness
-This program checks how a multi-byte integer is stored in memory:
 
-```C
+The following C program demonstrates how to determine a system's endianness:
+
+```c
 #include <stdio.h>
 
 int main() {
     unsigned int x = 1;
     char *c = (char*)&x;
-    
-    if (*c) printf("Little-endian\n");
-    else    printf("Big-endian\n");
+
+    if (*c)
+        printf("Little-endian\n");
+    else
+        printf("Big-endian\n");
 
     return 0;
 }
 ```
 
-**Explanation:**
+### Explanation
 
-+ `unsigned int x = 1;`: This line declares a 4-byte (typically) integer with the value `1`. It looks like this in hexadecimal: `0x00000001`.
+* `unsigned int x = 1;` creates a 4-byte integer with the value `0x00000001`.
+* `char *c = (char*)&x;` casts the address of `x` to a `char*`, pointing to the first byte of `x` in memory.
+* The condition `if (*c)` examines the first byte:
 
-+ `char *c = (char *)&x;`: This takes the address of the integer `x`, casts it to a character pointer (`char*`), and assigns it to `c`. Note:
-    - `unsigned int` is 4 bytes.
-    - `char` is 1 byte.
-    - This allows us to examine the integer, byte by byte.
-    - At this stage, `c` points to the first byte of `x` in memory.
-
-+ The `if` statement:
-    ```c
-    if (*c) printf("Little-endian\n");
-    else    printf("Big-endian\n");
-    ```
-
-    + This looks at the first byte of `x` as stored in memory. As mentioned earlier, `c` points to that first byte.
-    + The value of `*c` depends on how the integer was stored in memory. 
-        - If big-endian: `00 00 00 01`. `*c = 0x00`.
-        - If little-endian: `01 00 00 00`. `*c = 0x01`.
-
-    + The `if` statement returns true if the value is not zero (`0x01`. This prints out `"Little-endian"`.
-    + Else, if the value is 0 (`0x00`), the program prints out `"Big-endian"`. Cool.
+  * If the result is non-zero (i.e., `0x01`), the system is **little-endian**.
+  * If the result is zero (i.e., `0x00`), the system is **big-endian**.
 
 ---
 
 ## Converting Between Endianness
-There are 2 types of numbers that you can convert:
 
-1. **short**: Two bytes.
-2. **long**: Four bytes.
+There are two common data sizes typically converted between endianness:
+
+1. **short** (2 bytes)
+2. **long** (4 bytes)
 
 ### Using Standard Functions
 
-Mnemonic:
+These conversions are performed using well-defined functions with the following naming pattern:
 
-+ Host: `h`
-+ Network: `n`
-+ Short: `s`
-+ Long: `l`
+* `htons()` – Host to network short
+* `htonl()` – Host to network long
+* `ntohs()` – Network to host short
+* `ntohl()` – Network to host long
 
-Say you want to convert a short number from host byte order to network byte order. Here's how you get the name of the function to use.
-+ Start with the host: `h`
-+ Follow it with: `to`
-+ Then the network: `n`
-+ Finally its size, short: `s`.
-+ The function name is: `htons()`.
-+ This is read as: "Host to network short."
+These functions are part of standard networking libraries and ensure proper byte order conversion across systems.
 
-You can use the other combinations to come up with the following functions:
+### Manual Conversion Using Bitwise Operations
 
-| Function  | Meaning               |
-| --------- | --------------------- |
-| `htons()` | Host to network short |
-| `htonl()` | Host to network long  |
-| `ntohs()` | Network to host short |
-| `ntohl()` | Network to host long  |
-
-#### Manual conversion
-If you love pain, you can do it manually using bitwise operations.
+The following function performs a manual byte swap on a 32-bit unsigned integer:
 
 ```c
 uint32_t swap32(uint32_t val) {
@@ -127,44 +104,21 @@ uint32_t swap32(uint32_t val) {
 }
 ```
 
-This function, `swap32()` reverses the byte order of a 32-bit unsigned integer. If you input big-endian, it will output little-endian and vice-versa. This is called **byte swapping**, and it manually flips the byte order using bitwise operations.
+This function reverses the byte order. For instance, passing `0x12345678` will return `0x78563412`.
 
-**Breakdown:**
-+ Let's assume we pass in `0x12345678`. The function should reverse it and return `0x78563412`.
+#### Breakdown
 
-+ **Step 1:** Move the top byte `0x12`, all the way to the left.
-    - `((val >> 24) & 0x000000FF)`.
-    - Note that val in our case is `0x12345678`.
-    - `(0x12345678 >> 24)` = `0x00000012`.
-    - `0x00000012 & 0x000000FF` = `0x00000012`. This makes sure that all the other bytes are zero.
-
-+ **Step 2:** `((val >> 8) & 0x0000FF00)`
-    - `(0x12345678 >> 8)` = `0x00123456`
-    - `0x00123456 & 0x0000FF00` = `0x00003400`
-
-+ **Step 3:** `((val << 8) & 0x00FF0000)`
-    - `(0x12345678 << 8)` = `0x34567800`
-    - `0x34567800 & 0x00FF0000` = `0x00560000`
-
-+ **Step 4:** `((val << 24) & 0xFF000000)`
-    - `(0x12345678 << 24)` = `0x78000000`
-    - `0x78000000 & 0xFF000000` = `0x78000000`
-
-+ **Step 5:** Put it all together.
-    ```
-    0x00000012 | 0x00003400 | 0x00560000 | 0x78000000
-    Final result: 0x78563412
-    ```
-    Cool. Reverse successfull!
-
-+ Bitwise `AND` masks out unwanted bits after shifting.
-+ Bitwise `OR` combines the shifted pieces.
+1. `(val >> 24) & 0x000000FF` isolates the most significant byte and shifts it to the least significant position.
+2. `(val >> 8) & 0x0000FF00` extracts the second byte from the left.
+3. `(val << 8) & 0x00FF0000` shifts the second byte from the right into its new position.
+4. `(val << 24) & 0xFF000000` moves the least significant byte to the most significant position.
+5. The bitwise OR operator (`|`) combines all four parts to form the reversed value.
 
 ---
 
 ## Endianness in Assembly
 
-On a **little-endian** machine, pushing `0x12345678` onto the stack results in:
+On **little-endian** systems, pushing the 32-bit value `0x12345678` onto the stack results in the following memory layout:
 
 ```
 [SP+0] = 0x78
@@ -173,10 +127,8 @@ On a **little-endian** machine, pushing `0x12345678` onto the stack results in:
 [SP+3] = 0x12
 ```
 
-Important for understanding:
+This knowledge is essential in contexts such as:
 
-* System call ABI expectations
-* Memory dumps and debugging
-* Traps and register state layouts
-
----
+* Understanding system call ABI conventions
+* Analyzing memory dumps and debugging
+* Interpreting trap frames and register states

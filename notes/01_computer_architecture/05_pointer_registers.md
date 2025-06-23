@@ -2,21 +2,54 @@
 
 > **Random Quote:** You won't always feel motivated. That's why you bring discipline to work, not just dreams.
 
-Pointer registers are registers that are conventionally used to hold memory addresses. They're crucial for addressing, stack operations, function calls, and memory traversal.
+**Pointer registers** are CPU registers conventionally used to store memory addresses. They are essential for memory addressing, stack operations, function calls, and traversing data structures.
 
-These are the pointer registers: `IP`, `SP`, `BP`, `SI`, `DI`.
+The main pointer registers are: `IP`, `SP`, `BP`, `SI`, and `DI`.
 
-> **Note:** In protected mode they are `EIP`, ... and in long mode they are `RIP`, ... .
+> **Note:** In protected mode, these become `EIP`, `ESP`, `EBP`, etc. In long mode, they are extended further to `RIP`, `RSP`, `RBP`, and so on.
 
-+ `IP`: **Instruction Pointer.** This points to the next instruction to execute. It cannot be modified directly using the `MOV` instruction. You can only modify it using jumps, calls or interrupts.
+---
 
-+ `SP`: **Stack Pointer.** This points to the top of the stack. The stack grows downwards in memory (addresses decrease as stack grows). You can set this to whatever you want. It is used by instructions like `PUSH`, `POP`, `CALL` and `RET`.
+### `IP` – Instruction Pointer
 
-+ `BP`: **Base Pointer.** This is used to access function arguments and local variables in the stack. Often used like this:
-    ```assembly
-    ;This will all make sense later.
-    MOV EBP, ESP        ;Set up stack frame.
-    MOV EAX, [EBP+8]    ;Get first function argument.
-    ```
+Holds the address of the next instruction to be executed.
 
-+ `SI` and `DI`: **Source Index** and **Destination Index**. `SI` points to memory source and `DI` points to memory destination. They are used in string/memory instructions like `MOVS`, `LODS` and `STOS`. They are also used for function parameters in x86\_64 clling convention.
+* Cannot be modified directly with the `MOV` instruction.
+* Can only be changed through control transfer instructions like `JMP`, `CALL`, `RET`, and through interrupts.
+
+---
+
+### `SP` – Stack Pointer
+
+Points to the top of the stack.
+
+* The stack grows downward in memory, meaning addresses decrease as data is pushed.
+* This register is used by instructions such as `PUSH`, `POP`, `CALL`, and `RET`.
+* You can set its value manually if needed.
+
+---
+
+### `BP` – Base Pointer
+
+Used to access function parameters and local variables within the stack.
+
+* Often used to set up a stack frame at the beginning of a function.
+* Common pattern:
+
+```assembly
+MOV EBP, ESP        ; Set up the stack frame
+MOV EAX, [EBP+8]    ; Access the first function argument
+```
+
+This technique will become clearer as you explore function calling conventions and stack layouts.
+
+---
+
+### `SI` and `DI` – Source Index and Destination Index
+
+These registers are used for memory source and destination addressing.
+
+* `SI` (or `ESI` / `RSI`) points to the source memory location.
+* `DI` (or `EDI` / `RDI`) points to the destination memory location.
+* Commonly used in string and memory operations such as `MOVS`, `LODS`, and `STOS`.
+* In the x86\_64 calling convention, `RSI` and `RDI` are also used for passing the first and second function arguments, respectively.

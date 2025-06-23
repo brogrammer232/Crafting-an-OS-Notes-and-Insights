@@ -2,38 +2,74 @@
 
 > **Random Quote:** Every line you write in pain teaches your future self fluency.
 
-These registers are used for a lot of stuff including arithmetic, logic, data movement, etc. You'll use these registers most of the time.
+General purpose registers are used for a wide range of operations, including arithmetic, logic, data movement, and more. These are the registers you will use most frequently in assembly programming.
 
-They are:
-+ `AX`: **The Accumulator.** This register is used for arithmetic, I/O, and return values. It is implicitly used in instructions like `MUL`, `DIV`, and I/O instructions like `IN` and `OUT`.
-+ `BX`: **The base register.** It was originally used to hold base addresses for indirect memory access. You can use it for any general stuff like logic or arithmetic.
-+ `CX`: **The count register.** This register is designed for loop control and shift/rotate operations. It is used as a counter for loop instructions like `LOOP` and `REP`.
-+ `DX`: **The data register.** It is used in I/O, extended math, and sometimes as a second half for large values. It is essential when dealing with 32-bit or 64-bit results from 16-bit operations. Used by instructions like `IN` and `OUT` for I/O and `MUL` and `DIV` for math.
+The main general purpose registers are:
 
-> **Note:** Other registers like the *pointer registers* and `R8` to `R15` registers in 64-bit are also classified as general-purpose registers. They are discussed in separate files.
+* **`AX` – The Accumulator:**
+  Commonly used for arithmetic operations, input/output, and storing return values. It is implicitly used by instructions such as `MUL`, `DIV`, and I/O operations like `IN` and `OUT`.
 
-Though each of these registers have specific uses, you can still use them for other things like logic. You can use `BX` instead of `CX` as a loop counter if you want. It's just easier to use `CX` instead. Also, some instructions expect you to use certain registers. For example, the `REP` instruction expects you to store the number of times to repeat in the `CX` register.
+* **`BX` – The Base Register:**
+  Originally intended to store base addresses for indirect memory access. It can also be used for general logic and arithmetic operations.
 
-You may be wondering, "How much data can these registers hold?" Well, it depends. Let's focus on the `AX` register for now. The `AX` register is divided into multiple registers each with a symbolic name.
-+ `AL`: **Low byte** of `AX`. Its size is 8 bits (1 byte).
-+ `AH`: **High byte** of `AX`. Its size is also 8 bits.
-+ `AX`: This is `AL` and `AH` combined. Its size is 16 bits (2 bytes). One from `AL` and the other from `AH`.
-+ `EAX`: **Extended AX**. Its size is 32 bits (4 bytes).
-+ `RAX`: **Extended EAX**. Its size is 64 bits (8 bytes).
+* **`CX` – The Count Register:**
+  Designed for use in loop control and shift/rotate operations. It acts as a counter in instructions like `LOOP` and `REP`.
 
-This is the same for the other general purpose registers: `BX`, `CX`, `DX`.
+* **`DX` – The Data Register:**
+  Used in I/O operations, extended arithmetic, and as a second half when handling large values. It is essential in 16-bit operations producing 32-bit or 64-bit results, such as with `MUL`, `DIV`, `IN`, and `OUT`.
 
-**Key behavior to remember:**
-+ Say you have written `0x1122334455667788` to `RAX`: `MOV RAX, 0x1122334455667788`.
-+ Then you write `0xAABBCCDD` to `EAX`: `MOV EAX, 0xAABBCCDD`.
-+ `RAX` will contain `0x00000000AABBCCDD`.
+> **Note:** Other registers, such as pointer registers and `R8` to `R15` in 64-bit systems, are also considered general-purpose registers. They are covered in separate sections.
 
-This will happen because, `MOV EAX, ...` zeroes out the upper 32 bits of `RAX`.
+Although these registers have traditional roles, they are interchangeable in many contexts. For instance, you can use `BX` instead of `CX` as a loop counter, although some instructions expect specific registers. For example, the `REP` instruction expects the count to be placed in `CX`.
 
-However, changing the other lower bits will not zero out the upper bits. Example:
-+ If `EAX` contains `0xAABBCCDD`.
-+ Then you write `0x1234` to `AX`.
-+ `EAX` will contain `0xAABB1234`.
-+ This behavior is the same for `AL` and `AH`. Writing to them affects only them.
+---
 
-Keep this in mind. Don't worry if you don't understand now. It will all fall into place as you proceed soldier.
+## Register Sizes and Hierarchy
+
+You may be wondering how much data each register can hold. Let’s examine the `AX` register as an example. It is actually a part of a hierarchy of registers, each representing a different portion of the full 64-bit register:
+
+* `AL`: The **low byte** of `AX` – 8 bits (1 byte)
+* `AH`: The **high byte** of `AX` – 8 bits
+* `AX`: Combination of `AH` and `AL` – 16 bits (2 bytes)
+* `EAX`: **Extended AX** – 32 bits (4 bytes)
+* `RAX`: **Extended EAX** – 64 bits (8 bytes)
+
+This structure is consistent across other general-purpose registers like `BX`, `CX`, and `DX`.
+
+---
+
+## Important Behavior
+
+Consider the following example:
+
+```asm
+MOV RAX, 0x1122334455667788
+MOV EAX, 0xAABBCCDD
+```
+
+After these instructions execute, `RAX` will contain:
+
+```text
+0x00000000AABBCCDD
+```
+
+This happens because writing to `EAX` **zeroes out the upper 32 bits** of `RAX`.
+
+However, writing to lower parts of the register, such as `AX`, `AL`, or `AH`, **does not** clear the upper bits. For example:
+
+```asm
+MOV EAX, 0xAABBCCDD
+MOV AX, 0x1234
+```
+
+Now, `EAX` will contain:
+
+```text
+0xAABB1234
+```
+
+Similarly, writing to `AL` or `AH` only affects those respective 8-bit portions.
+
+---
+
+Keep this behavior in mind. Don’t worry if it seems confusing at first, it will make more sense as you continue learning. Stay persistent, soldier.

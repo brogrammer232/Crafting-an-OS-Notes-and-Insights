@@ -1,23 +1,69 @@
 # Segment Registers
 
-> **Random Quote:** Consistency beats bursts of brilliance.
+> **Random Quote:** Consistency beats intensity.
 
-**Segment registers** are 16-bit CPU registers used to define base addresses of memory segments. In the days before flat memory models, memory was divided into **segments**. These registers tell the CPU where each segment starts.
+**Segment registers** are 16-bit CPU registers used to define the base addresses of memory segments. In the early days of computing, before flat memory models became standard, memory was divided into **segments**. Segment registers tell the CPU where each of these segments begins.
 
-Segment registers are used differently in different CPU modes:
-+ In **real mode**, segment registers are used for memory addressing. Real mode uses **segment:offset** addressing. This means that the CPU will use two values (the segment and the offset) to calculate the memory address. The value of the segment is stored in one of the segment registers and the value of the offset can be passed as a literal or in a general purpose register. I believe there is no need to go into the math of segment:offset addressing now. That'll come later.
+Their role and behavior depend on the CPU mode in use:
 
-+ In **protected mode**, segment registers hold selectors into the **GDT (Global Descriptor Table)** or **LDT (Local Descriptor Table)**. In a nut shell, each GDT entry tells the CPU: where the segment starts, how big it is, whether its code or data and what privilege level it's for. All this will make sense when learning how to switch from real mode to protected mode. For now, just know that in protected mode, segment registers hold selectors to the GDT or LDT.
+* In **real mode**, segment registers are used for memory addressing through **segment\:offset** addressing. The CPU calculates memory addresses using two values: the segment (stored in a segment register) and the offset (either a literal or a value in a general-purpose register). The actual math behind this will be covered later.
 
-+ In **long mode**, segment registers are *mostly* ignored. `CS` controls which code segment is executing. `FS/GS` are still used, often for thread-local storage. `DS`, `ES`, and `SS` are *flat* (base = 0, limit = `0xFFFFFFFF`.
+* In **protected mode**, segment registers contain **selectors** that index into the **Global Descriptor Table (GDT)** or **Local Descriptor Table (LDT)**. Each GDT entry describes the base address, size, type (code or data), and privilege level of a segment. This concept will make more sense when you learn how to transition from real mode to protected mode.
 
-These are the segment registers: `CS`, `DS`, `SS`, `ES`, `FS`, `GS`.
-+ `CS`: **Code Segment.** This is the segment where code (instructions) are fetched from. In **real mode**, this register points to the code segment. In **protected mode**, it points to a GDT entry defining the executable segment. In **long mode**, the `CS` selector still matters for ring level and other stuff but the base/limit are ignored. The instruction pointer in `RIP` is treated as a flat pointer. The ring level is embedded in the two lowest bits of the selector in `CS`. (Keep going, it will all make sense later.)
+* In **long mode**, most segment registers are ignored. The `CS` register still determines the currently executing code segment. The `FS` and `GS` registers remain in use, often for thread-local storage. Registers like `DS`, `ES`, and `SS` are treated as flat segments with a base address of 0 and a limit of `0xFFFFFFFF`.
 
-+ `DS`: **Data Segment.** Where data variables reside. This register is used by default for accessing data, when no other segment override is used. In **real mode**, this register points to the data segment. In **protected mode**, the value in `DS` points to a GDT entry defining a readable data segment. In **long mode**, it's ignored. It usually has a base 0.
+---
 
-+ `SS`: **Stack Segment.** This segment defines where the stack resides. In **real mode**, it points to the stack segment. It is usually used together with `SP` and `BP` for segment:offset addressing, `SS` containing the segment and `SP` or `BP` having the offset. In **protected mode**, `SS` must point to a GDT entry with writable privileges. This is where the stack will be. In **long mode**, `SS` is ignored, treated as flat base 0.
+## The Segment Registers
 
-+ `ES`: **Extra segment**. It is used implicitly by string operations like `MOVS`, `STOS`, `LODS`, etc. In **real mode**, it points to the segment containing the string for string operations (you set this manually). In **protected mode**, it points to a GDT entry defining a readable data segment. In **long mode**, it's ignored.
+The CPU provides six segment registers: `CS`, `DS`, `SS`, `ES`, `FS`, and `GS`.
 
-+ `FS` and `GS`: These are 2 more **extra segments**. In **real mode**, they are ignored. In **protected mode**, they point to GDT entries which define a base, limit, and access rights. They are commonly used for Thread-Local Storage (TLS) on Windows and Linux. In **long mode**, the CPU reads base addresses for `FS`/`GS` from Model-Specific Registers (MSRs). Linux uses `GS` for per-CPU data in the kernel.
+---
+
+### `CS` – Code Segment
+
+This register defines the segment from which the CPU fetches instructions.
+
+* **In real mode:** Points to the code segment.
+* **In protected mode:** Contains a selector referencing a GDT entry for an executable segment.
+* **In long mode:** Still significant. The base and limit are ignored, but the selector controls the privilege level. The `RIP` register is used as a flat pointer. The ring level is embedded in the two lowest bits of the `CS` selector. This will become clearer later.
+
+---
+
+### `DS` – Data Segment
+
+Used by default when accessing data, unless another segment is specified.
+
+* **In real mode:** Points to the segment holding general data.
+* **In protected mode:** Contains a selector referencing a GDT entry for a readable data segment.
+* **In long mode:** Ignored by the CPU. The base is usually 0.
+
+---
+
+### `SS` – Stack Segment
+
+Defines the segment used for the stack.
+
+* **In real mode:** Points to the stack segment and works with `SP` or `BP` for segment\:offset addressing.
+* **In protected mode:** Must reference a GDT entry with write permissions. This segment is used by stack operations.
+* **In long mode:** Ignored by the CPU and treated as a flat segment with base 0.
+
+---
+
+### `ES` – Extra Segment
+
+Used implicitly by string instructions like `MOVS`, `STOS`, and `LODS`.
+
+* **In real mode:** Manually set to point to the relevant string data segment.
+* **In protected mode:** Contains a selector referencing a readable data segment.
+* **In long mode:** Ignored by the CPU.
+
+---
+
+### `FS` and `GS` – Additional Extra Segments
+
+These are additional segment registers used primarily for specialized purposes.
+
+* **In real mode:** Ignored.
+* **In protected mode:** Contain selectors referencing GDT entries with specific base addresses and access rights. Commonly used for Thread-Local Storage (TLS).
+* **In long mode:** The CPU obtains base addresses for `FS` and `GS` from Model-Specific Registers (MSRs). Linux, for example, uses `GS` for per-CPU kernel data.

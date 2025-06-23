@@ -2,83 +2,89 @@
 
 > **Random Quote:** Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.
 
-**Memory** refers to components that store data, either temporarily or permanently, for access and processing. Broadly, memory falls into two categories:
+**Memory** refers to hardware components responsible for storing data, either temporarily or permanently, for processing and retrieval. Broadly, memory is categorized into two types:
 
-+ **Volatile Memory:** Loses data when power is cut.
-+ **Non-Volatile Memory:** Retains data even without power.
+* **Volatile Memory:** Requires power to retain data; contents are lost upon power loss.
+* **Non-Volatile Memory:** Retains data even when power is removed.
 
 ---
 
 ## Volatile Memory
 
-Volatile memory is a type of computer memory that requires power to maintain the stored information. Once the system is powered off, the contents are lost.
+Volatile memory is a type of memory that loses its contents once power is removed. It is used primarily for temporary data storage during system operation.
 
 ### Types of Volatile Memory
 
-+ **RAM (Random Access Memory):**
-    - There are two types of RAM:
-        * **DRAM (Dynamic RAM):** Needs to be refreshed thousands of times per second. It is slower and cheaper.
-        * **SRAM (Static RAM):** Does not need to be refreshed thousands of times per second. It is faster and more expensive. It's also more reliable.
+* **RAM (Random Access Memory):**
 
-+ **Cache:** This is located on or near the CPU. It is very fast SRAM used to store frequently accessed instructions/data.
+  * RAM is further classified into:
+
+    * **DRAM (Dynamic RAM):** Requires frequent refreshing (thousands of times per second). It is slower and more cost-effective.
+    * **SRAM (Static RAM):** Does not require constant refreshing. It is faster, more expensive, and more reliable than DRAM.
+
+* **Cache Memory:** Located on or near the CPU, this is typically high-speed SRAM used to store frequently accessed instructions and data to reduce latency.
 
 ### Use Cases
 
-+ Used to temporarily store data for programs that are actively running.
-+ They act as high-speed workspace for the CPU (cache and registers).
+* Temporary storage for data and instructions used by actively running programs.
+* Functions as high-speed working memory for the CPU, including cache and registers.
 
 ### Read/Write Speeds
 
-Volatile memory read and write speeds are extremely fast, typically in the range of nanoseconds. For instance, DDR4 RAM has a bandwidth of up to 25.6 GB/s per module.
+Read and write speeds for volatile memory are exceptionally fast, typically measured in nanoseconds. For example, DDR4 RAM can provide bandwidths up to 25.6 GB/s per module.
 
 ### Data Retention
 
-As mentioned earlier, everything is wiped when power is lost. This is why unexpected shutdowns lead to data loss if unsaved.
+All data stored in volatile memory is lost once power is interrupted. Consequently, unsaved work is lost during unexpected shutdowns.
 
 ---
 
 ## Non-Volatile Memory
 
-Non-volatile memory retains stored data even when not powered. They are mostly used for long-term storage.
+Non-volatile memory retains stored data even in the absence of power. It is typically used for long-term or permanent storage.
 
 ### Types of Non-Volatile Memory
 
-+ **ROM (Read-Only Memory):** This is not typically writable during normal operation. It includes pre-programmed data like **firmware/BIOS**.
+* **ROM (Read-Only Memory):** Generally not writable during normal operation. It is used to store pre-programmed instructions such as firmware or BIOS.
 
-+ **Flash Memory:** This is electrically erasable and reprogrammable. They are easily writable during normal operation. Examples: SSDs, USB drives, and microcontrollers.
+* **Flash Memory:** Electrically erasable and reprogrammable. It supports write operations during standard use. Examples include SSDs, USB flash drives, and embedded microcontroller storage.
 
-+ **Hard Disk Drives (HDDs):** These store data magnetically on spinning disks. They are therefore affected by strong magnets. They are also easily writable during normal operation.
+* **Hard Disk Drives (HDDs):** Utilize magnetic storage on spinning platters. These are susceptible to damage from strong magnetic fields and support standard read/write operations.
 
-+ **Optical Discs (CDs/DVDs):** These store data using lasers and pits on a disc surface.
+* **Optical Discs (CDs/DVDs):** Use laser technology to store data as pits on a reflective disc surface.
 
 ### Use Cases
 
-+ Store firmware, operating systems, and user data on computers.
-+ They are also used for long term data storage (personally or on the cloud).
+* Storage of firmware, operating systems, and user files.
+* Long-term data storage, both locally and in cloud environments.
 
 ### Read/Write Speeds
 
-Non-volatile memory is a lot slower than volatile memory.
+Non-volatile memory is generally slower than volatile memory.
 
-+ SSDs: ~500 MB/s (SATA), and up to 7000 MB/s (NVMe).
-+ HDDs: ~80-160 MB/s.
-+ ROM: This is the slowest of all. EEPROM ranges around 0.1-1 MB/s while mask ROM averages at 1-10 MB/s. You don't need to know all the different types of ROM for now.
+* SSDs: \~500 MB/s (SATA) to \~7000 MB/s (NVMe).
+* HDDs: \~80–160 MB/s.
+* ROM: Among the slowest; EEPROM typically achieves 0.1–1 MB/s, while mask ROM ranges between 1–10 MB/s.
+
+*Note:* In-depth knowledge of all ROM variants is not required at this stage.
 
 ### Data Retention
 
-Non-volatile memory can store data for years or decades, depending on type and wear. They are ideal for storage and archival.
+Data in non-volatile memory can persist for many years or decades, making it suitable for long-term and archival storage.
 
 ---
 
-## Bonus Concepts You Should Know
+## Supplementary Concepts
 
-+ **EEPROM (Electrically Erasable Programmable ROM)**:
-    - Byte-level access.
-    - Slower than flash memory.
+* **EEPROM (Electrically Erasable Programmable ROM):**
 
-+ Flash Memory:
-    - Block-level access.
-    - Faster and cheaper than EEPROM.
-    - Used in USB drives, SSDs, and microcontrollers.
+  * Offers byte-level access.
+  * Slower than flash memory.
 
-+ **Firmware:** This is software embedded into hardware. It is usually store in non-volatile memory like ROM or Flash. It is critical for device startup (e.g., BIOS, UEFI).
+* **Flash Memory:**
+
+  * Operates at block-level access.
+  * Faster and more economical than EEPROM.
+  * Commonly used in USB drives, SSDs, and embedded systems.
+
+* **Firmware:** Software permanently embedded into hardware, typically stored in ROM or Flash memory. It is essential for system initialization and low-level hardware control (e.g., BIOS, UEFI).

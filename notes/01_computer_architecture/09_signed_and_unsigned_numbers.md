@@ -1,10 +1,10 @@
 # Signed and Unsigned Numbers
 
-> **Random Quote:** The computer is incredibly fast, accurate, and stupid. Man is unbelievably slow, inaccurate, and brilliant. The marriange of the two is a force beyond calculation.
-
+> **Random Quote:** The computer is incredibly fast, accurate, and stupid. Man is unbelievably slow, inaccurate, and brilliant. The marriage of the two is a force beyond calculation.
 
 ## Unsigned Numbers
-An unsigned numbers is a binary number that can only represent zero and positive values. All bits contribute to magnitude. There is no sign bit like in signed integers.
+
+An **unsigned number** is a binary number that can only represent zero and positive values. All bits contribute to the magnitude. There is no sign bit.
 
 **Range:**
 
@@ -16,44 +16,52 @@ An unsigned numbers is a binary number that can only represent zero and positive
 | 64   | 0   | 18,446,744,073,709,551,615 |
 
 **Binary representation:**
-This is straight forward.
-+ `0` = `00000000`
-+ `1` = `00000001`
-+ `255` = `11111111`
+Straightforward mapping:
+
+* `0` = `00000000`
+* `1` = `00000001`
+* `255` = `11111111`
 
 **Overflow:**
-Overflow occurs when a calculation produces a result outside the range representable by the signed type. If you go over the max, it wraps around.
-Example: If you add 1 to 255 in 8-bit, the value will be 0.
+Overflow occurs when a result exceeds the representable range. In unsigned types, overflow wraps around.
+
 ```c
-uint8_t = 255;
-x += 1; // x = 0
+uint8_t x = 255;
+x += 1; // x becomes 0
 ```
 
 **Why use unsigned numbers:**
-+ You are sure that the value can't be negative (e.g., size of an array, memory address, etc).
-+ They give you a wider positive range than signed types of the same size.
-+ In some hardware-level programming, unsigned is the natural format.
+
+* The value will never be negative (e.g., array size, memory address).
+* Wider positive range than signed types of the same size.
+* More natural in hardware-level programming.
 
 **Things to watch out for:**
-+ Comparing `unsigned` with `signed` values can lead to bugs:
-    ```c
-    int a = -1;
-    unsigned int b = 1;
 
-    (a < b) // FALSE? The MSF being 1, makes `a`'s unsigned version greater than `b`.
-    ```
+* Mixing `signed` and `unsigned` can lead to bugs:
 
-+ Subtraction can wrap if you're not careful.
-    ```c
-    unsigned int x = 5 - 10; // x = 4294967291 if 32-bit
-    ```
+  ```c
+  int a = -1;
+  unsigned int b = 1;
+
+  if (a < b) // FALSE. a is converted to unsigned: very large value > 1.
+  ```
+* Subtraction can wrap:
+
+  ```c
+  unsigned int x = 5 - 10; // x = 4294967291 (if 32-bit)
+  ```
+
+---
 
 ## Signed Numbers
-A signed number is a binary number that can represent both positive and negative values. The MSB (most significant bit) is used to indicate the sign and the other bits are used for the magnitude.
-+ `0`: Positive
-+ `1`: Negative
 
-This means that in a byte (8 bits), 7 bits are used to represent the number and the MSB is used to represent the sign.
+A **signed number** can represent both negative and positive values. The most significant bit (MSB) is used for the sign:
+
+* `0` = positive
+* `1` = negative
+
+That leaves fewer bits for the magnitude compared to unsigned numbers.
 
 **Range:**
 
@@ -63,181 +71,180 @@ This means that in a byte (8 bits), 7 bits are used to represent the number and 
 | 16   | -32,768        | +32,767        |
 | 32   | -2,147,483,648 | +2,147,483,647 |
 
-
 **Binary representation:**
-There are multiple ways of representing signed numbers in binary. These different ways are called **integer representations** or **signed number representations** and they are:
-+ [Two's complement](#twos-complement)
-+ [One's complement](#ones-complement)
-+ [Sign-magnitude](#sign-magnitude)
-+ [Excess-K](#excess-k)
+Signed numbers can be represented using:
 
-These are discussed below.
+* [Two's complement](#twos-complement)
+* [One's complement](#ones-complement)
+* [Sign-magnitude](#sign-magnitude)
+* [Excess-K](#excess-k)
+
+Most systems use two's complement.
 
 **Overflow:**
-Overflow occurs when a calculation produces a result outside the range representable by the signed type. Like in unsigned numbers, signed wraps around.
+Signed overflow wraps too, but it's **undefined behavior** in C/C++:
+
 ```c
 int8_t x = 127;
-x += 1;     // Wraps to -128
+x += 1; // wraps to -128
 ```
 
-The binary:
+Binary:
+
 ```
 127 = 01111111
 +1  = 00000001
      ---------
-     10000000 = -128 (!!!)
+     10000000 = -128 (in two's complement)
 ```
 
-Same for negative overflow:
+Same goes for negative overflow:
+
 ```c
-int8_t = -128;
-x -= 1;     // wraps to +127
+int8_t x = -128;
+x -= 1; // wraps to +127
 ```
 
 **Why use signed numbers:**
-+ When you need to work with both negative and positive values or even negative only.
+
+* Required when working with negative values.
 
 **Things to watch out for:**
-+ Comparing `unsigned` with `signed` values can lead to bugs:
-    ```c
-    int a = -1;
-    unsigned int b = 1;
 
-    (a < b) // FALSE? The MSF being 1, makes `a`'s unsigned version greater than `b`.
-    ```
-+ Watch out for overflows and wrap arounds.
+* Comparing signed and unsigned values:
 
-+ Never assume overflows wraps cleanly for signed integers. Signed integer overflow is undefined behavior in C and C++. This means that the compiler is allowed to assume it never happens. It may optimize your code in ways that make bugs invisible or unpredictable. This is not true for unsigned. Unsigned overflow is well-defined and just wraps around.
+  ```c
+  int a = -1;
+  unsigned int b = 1;
 
-+ Be consistent with types. Don't mix signed and unsigned unless you're absolutely sure.
-
-## Signed Number Representation
-### Two's Complement
+  if (a < b) // FALSE. a becomes a large unsigned value.
+  ```
+* Signed overflow is undefined behavior in C/C++. Never rely on it.
+* Be consistent with types. Don't mix signed and unsigned unless you're 100% sure of what you're doing.
 
 ---
 
-Two's complement is the most common way computers represent signed integers in binary.
+## Signed Number Representation
+
+### Two's Complement
+
+Two's complement is the standard way computers represent signed integers.
 
 **How it works:**
-+ Positive numbers are stored normally (just like unsigned).
-+ Negative numbers are stored by inverting the bits and adding 1 to the result.
+
+* Positive numbers are stored like unsigned.
+* Negative numbers: invert the bits and add 1.
 
 Example:
-+ Positive 5 = `00000101`.
-+ Negative 5:
-    - Invert the bits: `11111010`.
-    - Add 1: `11111010 + 1 = 11111011`.
-    - -5 = `11111011` in two's complement.
 
-Arithmetic example:
+* `+5`: `00000101`
+* `-5`:
+
+  * Invert: `11111010`
+  * Add 1: `11111011`
+
+**Arithmetic example:**
+
 ```
  5 = 00000101
--3 = 11111101 (in two's complement)
+-3 = 11111101
 
-Adding them:
-    00000101 (5)
-  + 11111101 (-3)
-  ---------------
+Add:
+    00000101
+  + 11111101
+  ----------
    100000010
 
-Ignore the overflow. The result is: 00000010 = 2
+Ignore the carry. Result: 00000010 = 2
 ```
 
-Why did we ignore the overflow? In two's complement, the overflow doesn't matter, it's not part of the result. Note that:
-+ the result wraps around naturally and
-+ the final bits already encode the correct signed result.
-This is one of the reasons why two's complement is preferred over the other integer representations, because it's easy to do math with. It just works.
-
-**The rule:** In two's complement, ignore the carry out. It's not part of the result. Use sign bit mismatch to detect signed overflow.
+**Why ignore the overflow?**
+Because the result bits already hold the correct value. Two's complement makes arithmetic work naturally.
 
 **Why it's used:**
-+ Makes addition/subtraction simple and fast. Same logic for both positive and negative numbers.
-+ Only one representation of 0, unlike other schemes (like sign-magnitude).
-+ Overflow wraps around naturally.
 
-Two's complement is wierd for humans, but perfect for machines.
+* Same logic for both positive and negative arithmetic.
+* Only one zero.
+* Overflow wraps cleanly.
+* Works perfectly with basic adders and ALUs.
 
 **Where it's used:**
-+ All modern processors use two's complement for signed integers.
-+ Compilers assume two's complement when doing signed arithmetic.
-+ Operating systems use it too in kernel code, system calls, memory management, drivers, you name it.
-+ Binay protocols and file formats that store signed number often assume two's complement.
-+ Embedded systems and microcontrollers, stuff like arduino, use two's complement for signed math.
 
-The list goes on. Two's complement is the industry standard. Everywhere signed integers are used in hardware or low-level code, it's two's complement.
+* Every modern CPU
+* Compilers
+* Operating systems
+* Embedded systems
+
+---
 
 ### One's Complement
 
----
-
-This is very similar to two's complement.
+Similar to two's complement, but without the "+1".
 
 **How it works:**
-+ Positive numbers are the same as unsigned.
-+ Negative numbers are stored by inverting all the bits. We don't add 1 like in two's complement.
+
+* Negative = invert all bits.
 
 Example:
-+ `+5`: `00000101`
-+ `-5`: `11111010` (Inverted the bits)
+
+* `+5`: `00000101`
+* `-5`: `11111010`
+
+**Problems:**
+
+* Two zeroes: `00000000` and `11111111`
+* Complicated arithmetic logic
 
 **Why it's not used:**
-This was completely replaced by two's complement. Here's why:
-+ Has two zeroes:
-    - `00000000` = +0
-    - `11111111` = -0
-    As mentioned earlier, this causes bugs and makes comparisons messy.
-+ Arithmetic is harder because you must handle carries manually.
-
-You can safely forget everything about this now. It won't come back to haunt you. Or will it? ...
-
-### Sign-magnitude
+It was replaced by two's complement. Don’t waste brain cells memorizing this.
 
 ---
 
-Sign-magnitude is a straight forward, easy to understand binary format.
+### Sign-Magnitude
+
+The human-friendly format.
 
 **How it works:**
-+ The MSB (most significant bit) indicates the sign (`0` means positive, `1` means negative).
-+ The remaining bits represent the magnitude (absolute value).
+
+* MSB = sign (0 = positive, 1 = negative)
+* Remaining bits = magnitude
 
 Example:
-+ `+3` = `00000011`
-+ `-3` = `10000011`
+
+* `+3`: `00000011`
+* `-3`: `10000011`
+
+**Problems:**
+
+* Two zeros: `00000000` and `10000000`
+* Complex arithmetic hardware
 
 **Why it's not used:**
-+ You need special hardware logic for signed arithmetic using sign-magnitude.
-+ There are two versions of 0:
-    - `00000000` = +0
-    - `10000000` = -0
-    This causes bugs and makes comparisons messy.
-+ Addition and subtraction require separate rules for signs.
-
-Sign-magnitude is easy for humans to read, but bad for CPUs.
-
-### Excess-K
+Simple for humans, awful for CPUs.
 
 ---
 
-This is also know as biased representation.
+### Excess-K (Biased Representation)
+
+Used for floating-point numbers.
 
 **How it works:**
-+ You add a bias (K) to the actual number so everything becomes non-negative.
-+ Stored value = Actual value + bias (K)
 
-Example: Excess-127 (used in IEEE 754 32-bit floats)
-+ Bias = 127
-+ `-2` = `-2 + 127 = 125` = `01111101`
-+ `0` = `0 + 127 = 127` = `01111111`
+* Store: value + bias
 
+**Example (Excess-127):**
 
-This makes sorting and comparison easy. All exponents become unsigned, clean and fast in hardware.
+* Bias = 127
+* Actual -2 = Stored 125 = `01111101`
+* Actual 0 = Stored 127 = `01111111`
 
 **Why it's used:**
-+ It makes comparison easy.
-+ Simplifies floating-point parsing.
-+ Non-negative representation.
+
+* Makes comparison fast and simple
+* Simplifies floating-point logic
 
 **Where it's used:**
-+ IEEE 754 fload/dobule formats
-+ CPU FPU registers
-+ Emulators and compiler backends
+
+* IEEE 754 (32-bit and 64-bit floats)
+* CPU floating-point units
+* Emulators and compilers

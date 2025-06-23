@@ -2,24 +2,24 @@
 
 > **Random Quote:** First, solve the problem. Then, write the code.
 
-Bitwise operations act directly on the binary representations of integers. Each operation manipulates bits independently.
+Bitwise operations manipulate individual bits within binary numbers. They're the bread and butter of low-level programming, system calls, flags, masks, and hardware hacking.
 
 ---
 
 ## Key Topics
 
-- [AND (`&`)](#and-)
-- [OR (`|`)](#or-)
-- [XOR (`^`)](#xor-)
-- [NOT (`~`)](#not-)
-- [Right Shift (`>>`)](#right-shift-)
-- [Left Shift (`<<`)](#left-shift-)
+* [AND (`&`)](#and-)
+* [OR (`|`)](#or-)
+* [XOR (`^`)](#xor-)
+* [NOT (`~`)](#not-)
+* [Right Shift (`>>`)](#right-shift-)
+* [Left Shift (`<<`)](#left-shift-)
 
 ---
 
 ## AND (`&`)
 
-Bitwise AND (`&`) returns `1` if **both bits** are `1`.
+Returns `1` if **both** bits are `1`. Otherwise, `0`.
 
 | A | B | A & B |
 | - | - | ----- |
@@ -30,17 +30,19 @@ Bitwise AND (`&`) returns `1` if **both bits** are `1`.
 
 **Example:**
 
-```C
+```c
 int a = 0b1100; // 12
 int b = 0b1010; // 10
 int result = a & b; // 0b1000 (8)
 ```
 
+Used often for **masking** bits.
+
 ---
 
 ## OR (`|`)
 
-Bitwise OR (`|`) returns `1` if **at least one bit** is `1`.
+Returns `1` if **at least one** bit is `1`.
 
 | A | B | A \| B |
 | - | - | ------ |
@@ -51,17 +53,19 @@ Bitwise OR (`|`) returns `1` if **at least one bit** is `1`.
 
 **Example:**
 
-```C
+```c
 int a = 0b1100;
 int b = 0b1010;
 int result = a | b; // 0b1110 (14)
 ```
 
+Used to **set** specific bits.
+
 ---
 
 ## XOR (`^`)
 
-Bitwise XOR (`^`) returns `1` if **the bits are different**.
+Returns `1` if the bits are **different**.
 
 | A | B | A ^ B |
 | - | - | ----- |
@@ -78,103 +82,96 @@ int b = 0b1010;
 int result = a ^ b; // 0b0110 (6)
 ```
 
+Used for **bit flipping**, **toggling**, and some crypto ops.
+
 ---
 
 ## NOT (`~`)
 
-Bitwise NOT (`~`) flips every bit (`1 -> 0`, `0 -> 1`).
+Unary operator that **flips** each bit. `1` becomes `0`, and vice versa.
 
 **Example:**
 
 ```c
 int a = 0b00001111; // 15
-int result = ~a;    // 0b11110000, but in 32-bit signed: -16
+int result = ~a;    // 0b11110000 (in 32-bit signed: -16)
 ```
 
-> **Note:** `~` is a **unary operator**, and in C, it affects the sign bit in signed integers.
+> **Note:** In C, `~` also flips the sign bit. So on signed types, you'll get negative results.
 
-### Bonus: Operator Types
+---
 
-+ **Unary operators:** Takes **one operand**. Example: `~a`.
-+ **Binary operators:** Takes **two operands**. Example: `a & b`.
-+ **Ternary operators:** Takes **three operands**. Example:
+### Quick Operator Reference
 
-```c
-int max = (a > b) ? a : b;
-```
-
-Operands:
-
-1. Condition: `a > b`
-2. Value if true: `a`
-3. Value if false: `b`
+| Type    | Arity | Example           |
+| ------- | ----- | ----------------- |
+| Unary   | 1     | `~a`              |
+| Binary  | 2     | `a & b`, `a << b` |
+| Ternary | 3     | `(a > b) ? a : b` |
 
 ---
 
 ## Right Shift (`>>`)
 
-Right shift (`>>`) shifts bits to the right.
+Shifts bits **to the right**.
 
-+ `a >> n` is equivalent to `a / 2^n`.
+* `a >> n` is roughly `a / 2^n`
 
-There are 2 kinds of right shifts:
+Two behaviors:
 
-+ **Logical shift:** For **unsigned values**. Fills in `0`s on the left.
-+ **Arithmetic shift:** For **signed values**. Fills in the sign bit on the left.
+* **Logical shift:** for unsigned types. Fills with 0s.
+* **Arithmetic shift:** for signed types. Fills with the **sign bit**.
 
-### Logical Shift Examples
-
-```c
-unsigned int x = 8;   // binary: 0000 1000
-unsigned int y = x >> 1; //       0000 0100 => 4
-```
-
-+ `8 >> 1` = `8 / 2^1 = 4`.
+### Logical shift examples:
 
 ```c
-unsigned int x = 20;  // binary: 0001 0100
-unsigned int y = x >> 2; //       0000 0101 => 5
+unsigned int x = 8;       // 00001000
+unsigned int y = x >> 1;  // 00000100 => 4
 ```
-
-### Arithmetic Shift Examples
 
 ```c
-int x = -4;         // In binary (2’s comp): 1111 1100
-int y = x >> 1;     // Result: 1111 1110 => -2
+unsigned int x = 20;      // 00010100
+unsigned int y = x >> 2;  // 00000101 => 5
 ```
 
-+ Arithmetic shift **preserves the sign** by filling the left with the sign bit.
+### Arithmetic shift:
+
+```c
+int x = -4;        // 11111100 (in two's complement)
+int y = x >> 1;    // 11111110 => -2
+```
 
 ---
 
 ## Left Shift (`<<`)
 
-Left shift (`<<`) shifts bits to the left and fills in `0`s on the right.
+Shifts bits **to the left**, inserting `0`s from the right.
 
-+ `a << n` is equivalent to `a * 2^n`. Each left shift by 1 is equivalent to multiplying by `2^1`.
+* `a << n` is `a * 2^n`
 
-
-### Examples
-
-```c
-int a = 0b00000001; // 1
-int result = a << 3; // 0b00001000 (8)
-```
-
-+ `a << 3` = `a * 2^3` (`2^3 = 8`)
+### Examples:
 
 ```c
-int x = 0b00000011; // 3
-int y = x << 1; // 00000110 = 6
+int a = 0b00000001;     // 1
+int result = a << 3;    // 0b00001000 (8)
 ```
-
-+ `3 << 1` = `3 * 2^1` (`2^1 = 2`)
-
-### Overflow risk
-
-+ Left shifting large values can cause overflow, especially on fixed-size types like `uint8_t`.
 
 ```c
-uint8_t x = 200;    // binary: 1100 1000
-uint8_t y = x << 1; //        1001 0000 => 144
+int x = 0b00000011;     // 3
+int y = x << 1;         // 0b00000110 = 6
 ```
+
+---
+
+### Watch out: Overflow
+
+Left shifting large values can overflow and wrap around silently.
+
+```c
+uint8_t x = 200;     // 11001000
+uint8_t y = x << 1;  // 10010000 => 144 (wrapped)
+```
+
+---
+
+**Final note:** Bitwise ops are low-level magic. They're fast, powerful, and dangerous if misused. Always know your types, especially signed vs unsigned. You'll use bitwise operations everywhere in systems programming — flags, register manipulation, memory-mapped IO, file permissions, and more.

@@ -2,26 +2,62 @@
 
 > **Random Quote:** Winners act, losers give excuses.
 
-Control registers are special CPU registers used to control low-level processor features like memory management, protection, and hardware access.
+**Control registers** are special-purpose CPU registers used to manage core processor features such as memory protection, paging, hardware virtualization, and low-level access control.
 
-These registers can only be accessed in kernel mode (ring 0). Trying to access them in user mode results in a #GP (General Protection Fault).
+These registers can only be accessed in **kernel mode (ring 0)**. Attempting to access them in **user mode** results in a **#GP (General Protection Fault)**.
 
-These are the control registers: `CR0`, `CR2`, `CR3`, `CR4`, and `CR8`. I promise I didn't miss any. `CR1`, `CR5`, `CR6` and `CR7` were reserved for future expansion, but nothing has been implemented yet. They physically don't exist on the CPU. Reading or writing to them will trigger a #UD (Invalid Opcode Exception).
+The primary control registers are: `CR0`, `CR2`, `CR3`, `CR4`, and `CR8`.
 
-+ `CR0`: This register is used to enable protected mode, paging, and write protection.
-    - **BIT 0**. **PE**. Setting this bit will enable 32-bit protected mode.
-    - **BIT 31**. **PG**. Setting this bit will enable virtual memory paging.
-    - **BIT 16**. **WP**. Setting this bit will enable write protect. This will protect read-only pages even in kernel mode.
-    - **BIT 18**. **AM**. Alignment Mask. This is used together with `AC` flag for alignment checks.
+> Note: `CR1`, `CR5`, `CR6`, and `CR7` do not exist. They are reserved for potential future use, but no hardware implementation has been provided. Any attempt to read or write to them will result in a **#UD (Invalid Opcode Exception).**
 
-+ `CR2`: **Page Fault Liner Address**. When a page fault (#PF) occurs, the CPU stores the address that caused it in `CR2`. The OS uses this to figure out what memory access failed and why.
+---
 
-+ `CR3`: **Page Directory Page Register (PDBR)**. This register points to the physical address of the page directory or PML4 (in x86\_64). When the OS switches page tables (e.g., during a context switch), it changes `CR3`. Also used by the CPU to cache translations in the TLB (Translation Lookaside Buffer). Changing `CR3` flushes the TLB.
+### `CR0` – Control Register 0
 
-+ `CR4`: This register is used to enable more advanced CPU features.
-    - **BIT 5**. **PAE**. Setting this bit enables Physical Address Extension (36-bit addresses).
-    - **BIT 9**. **OSFXSR**. This bit enables SSE instructions in OS (don't know what this means).
-    - **BIT 13**. **VMXE**. This bit enables VMX (Intel VT-x virtualization).
-    - **BIT 7**. **PGE**. Global Pages enabled (don't flush TLB on `CR3` switch).
+Used to enable or configure core features such as protected mode and virtual memory.
 
-+ `CR8`: **Task Priority Register (x86_64 only)**. This register controls the priority level for interrupts. It is used with APIC to mask lower-priority interrupts. This register is ignored in 32-bit mode.
+Important bits:
+
+* **Bit 0 – PE (Protection Enable):** Enables 32-bit protected mode when set.
+* **Bit 31 – PG (Paging):** Enables paging and virtual memory support when set.
+* **Bit 16 – WP (Write Protect):** Enforces write protection for read-only pages, even in kernel mode.
+* **Bit 18 – AM (Alignment Mask):** Works together with the `AC` flag in `RFLAGS` to enable alignment checking.
+
+---
+
+### `CR2` – Page Fault Linear Address
+
+When a **page fault (#PF)** occurs, the CPU stores the **faulting virtual address** in `CR2`.
+Operating systems use this register to diagnose and handle memory access violations.
+
+---
+
+### `CR3` – Page Directory Base Register (PDBR)
+
+Points to the **physical address** of the current page directory in 32-bit mode or the **PML4** table in 64-bit mode.
+When the operating system switches tasks or processes, it updates `CR3` to point to a new page table.
+
+* Changing `CR3` causes the **Translation Lookaside Buffer (TLB)** to be flushed.
+* This ensures that old virtual-to-physical address translations do not persist across context switches.
+
+---
+
+### `CR4` – Control Register 4
+
+Used to enable and configure advanced CPU features.
+
+Notable bits:
+
+* **Bit 5 – PAE (Physical Address Extension):** Enables 36-bit physical addressing, which extends memory limits beyond 4 GB.
+* **Bit 9 – OSFXSR:** Enables the use of **SSE (Streaming SIMD Extensions)** in operating systems.
+* **Bit 13 – VMXE (VMX Enable):** Enables **Intel VT-x virtualization support**. Required for running virtual machines.
+* **Bit 7 – PGE (Page Global Enable):** Allows global pages to persist across TLB flushes, improving performance during context switches.
+
+---
+
+### `CR8` – Task Priority Register (x86\_64 Only)
+
+Used in **64-bit mode** to manage the interrupt priority level for **Advanced Programmable Interrupt Controllers (APICs)**.
+
+* Allows the CPU to **mask** lower-priority interrupts below a given threshold.
+* Ignored entirely in **32-bit mode**.
