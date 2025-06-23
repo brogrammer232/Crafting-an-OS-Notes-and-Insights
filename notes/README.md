@@ -2,8 +2,6 @@
 
 > **Random quote:** If you are not prepared to go all the way, why take the first step?
 
-So, you want to build an operating system?  
-Good. You're exactly where you need to be.
 
 ## What is OS Development?
 
