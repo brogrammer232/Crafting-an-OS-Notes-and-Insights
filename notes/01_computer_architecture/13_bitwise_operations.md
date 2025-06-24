@@ -173,5 +173,3 @@ uint8_t y = x << 1;  // 10010000 => 144 (wrapped)
 ```
 
 ---
-
-**Final note:** Bitwise ops are low-level magic. They're fast, powerful, and dangerous if misused. Always know your types, especially signed vs unsigned. You'll use bitwise operations everywhere in systems programming — flags, register manipulation, memory-mapped IO, file permissions, and more.
