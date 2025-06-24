@@ -4,11 +4,11 @@
 
 A bootloader is a small program located in the boot sector, typically the first 512 bytes of a bootable storage device. It is the first code that the BIOS loads into memory and executes during the system startup process.
 
-## Boot Sector and Boot Signature
+## Boilerplate
 
 + What is the boot sector.
 + What is the boot signature and why is it useful.
-
++ Where the BIOS loads the bootloader in memory.
 
 ## Memory Layout in real mode
 
