@@ -11,22 +11,22 @@ This repository is built for **all**; **beginners** who are curious about low-le
 ## What You'll Find Here
 
 - Simple and clear explanations of core OS concepts
-- Code examples in C, Assembly and bash
+- Practical code examples in C and Assembly
 - Beginner-friendly walkthroughs
 - Diagrams and visual aids
-- Practice projects to avoid tutorial hell
+- Well documented projects to practice what you've learnt
 
 ---
 
 ## Repository Tour
 
 - [**`notes/`**](./notes): The main event. In-depth notes on everything I’ve learned, clearly organized and growing steadily.
-- [**`projects/`**](./projects): Hands-on projects I’ve worked on to apply what I’ve learned. Fully documented and recommended for practice.
-- [**`resources/`**](./resources): PDFs, images, and other external stuff I found useful (too good to gatekeep).
-- [**`roadmap/`**](./roadmap): Contains a roadmap for beginners which guide them from the very basics to building a kernel.
-- [**`tools/`**](./tools): Scripts and helpers to automate the boring parts and save time.
-- [CONTRIBUTING.md](./CONTRIBUTING.md): Want to help? This file tells you how; and more importantly, how *not* to.
-- [LICENSE](./LICENSE): Legal stuff you’ll probably never read.
+- [**`projects/`**](./projects): Practical projects with clear instructions. Fully documented and recommended for practice.
+- [**`resources/`**](./resources): A selection of external materials (including PDFs, images and links) that complement the main content.
+- [**`roadmap/`**](./roadmap): A roadmap to guide you from the very basics to building a kernel.
+- [**`tools/`**](./tools): Scripts and tools to make repetitive tasks easier.
+- [CONTRIBUTING.md](./CONTRIBUTING.md): Instructions to anyone who wants to contribute to the project.
+- [LICENSE](./LICENSE): Information about how the content can be used or shared.
 - [SUMMARY.md](./SUMMARY.md): An index of everything in the repo for quick navigation.
 
 ---
@@ -49,4 +49,4 @@ Or check the full [Table of Contents](SUMMARY.md)!
 
 ## License
 
-This project is licensed under the MIT License because knowledge should be free.
+This project is licensed under the MIT License.
